@@ -2,5 +2,6 @@
 <ShortName>MBasiuk</ShortName>
 <Description>Search MBasiuk</Description>
 <Url type="text/html" template="https://mbasiuk.github.io/?search={searchTerms}"/>
+<Url type="application/x-moz-keywordsearch" template="https://mbasiuk.github.io/?search={searchTerms}" />
 <Url type="application/opensearchdescription+xml" rel="self" template="https://mbasiuk.github.io/opensearch.xml"/>
 </OpenSearchDescription>
