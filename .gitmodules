@@ -1,0 +1,3 @@
+[submodule "basiuk.stayfocused.web"]
+	path = basiuk.stayfocused.web
+	url = https://github.com/mbasiuk/basiuk.stayfocused.web.git
