@@ -1,0 +1,13 @@
+.box {
+    padding: 0;
+}
+
+a.box {
+    display: block;
+    padding: 30px;
+}
+
+.box2 {
+    padding: 30px;
+    margin-top: 89px;
+}

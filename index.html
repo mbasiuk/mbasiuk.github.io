@@ -31,14 +31,117 @@
     <meta name="twitter:url" content="https://mbasiuk.github.io">
     <meta name="twitter:description" content="the world&#39;s leading IT expert.">
     <meta name="description" content="the world&#39;s leading IT expert.">
-    <link rel="search" type="application/opensearchdescription+xml" title="Mykhailo Basiuk Search" href="/opensearch.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Mykhailo Basiuk Search"
+        href="/opensearch.xml">
+    <style>
+        .container {
+            max-width: 500px;
+        }
+
+        .card {
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(60, 65, 70, 0.2);
+            margin: 33vh auto 0;
+            padding: 36px;
+            width: 428px;
+            height: 190px;
+            background: white;
+            position: relative;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(35, 38, 40, 0.2);
+        }
+        
+        .prof {
+            color: #565656;
+            letter-spacing: 2.5px;
+            margin: 7px 0 0 0;
+        }
+
+        .name {
+            font-weight: bold;
+            font-size: large;
+            letter-spacing: 6.5px;
+            color: black;
+        }
+        
+        
+        a, .dval {
+            letter-spacing: 1.6px;
+            text-decoration: none;
+            color: #565656;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .details {
+            position: absolute;
+            bottom: 26px;
+        }
+
+        .details > div {
+            margin: 6px 0 0 0;
+        }
+        
+        .detail {
+            color: #F48024;
+            display: inline-block;
+            width: 1.5em;
+        }
+        
+        .logo {
+            background: url('favicon-96x96.png') no-repeat;
+            position: absolute;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;   
+            bottom: 100px;
+            right: 36px;
+            opacity: 0.3;
+            transition: 300ms;
+        }
+
+        .logo:hover{
+            opacity: 1;
+            transform: rotate(442deg);
+        }
+
+        ::selection { background: #f75b2a; color: white; }
+        ::-moz-selection { background: #f75b2a; color: white; }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="box">
-            For hire me as IT consultant for 399$ per hour please send an email to <a href="mailto:mykhailo.basiuk+hire@gmail.com">mykhailo.basiuk+hire@gmail.com</a>. I’ll contact you
-            in 24h.
+        <div class="card">
+
+            <div class="main">
+                <span class="name">MYKHAILO BASIUK</span>
+                <div class="prof">IT Consultant</div>
+            </div>
+
+            <div class="details">
+                <div>
+                    <span class="detail">t:</span>
+                    <a class="dval" href="tel:1-651-417-6127">+1 (651) 417-6127</a>
+                </div>
+                <div>
+                    <span class="detail">e:</span>
+                    <a class="dval" href="mailto:mykhailo.basiuk+hire@gmail.com">mykhailo.basiuk+hire@gmail.com</a>
+                </div>
+                <div>
+                    <span class="detail">a:</span>
+                    <span class="dval">St. Paul, MN, USA</span>
+                </div>
+            </div>
+
+            <div class="logo"></div>
+
         </div>
     </div>
 
@@ -71,5 +174,45 @@
         </animateMotion>
     </svg>
 </body>
-<script async src="/mbasiuk.stayfocused.web/index.js"></script>
+<script>
+    var mb = {};
+
+    if (window.location.protocol === 'https:') {
+        mb.uri = 'wss://m.zergatul.com';
+    } else {
+        mb.uri = 'ws://localhost:8999';
+    }
+
+    mb.ws = new WebSocket(mb.uri);
+    mb.onerror = function (ev) {
+        console.error(ev);
+    };
+
+    mb.onopen = function (ev) {
+        var collected = JSON.stringify({ performance: window.performance });
+        console.log('open', collected);
+        mb.ws.send(collected);
+    };
+
+    mb.onclose = function (ev) {
+        console.log('close', ev);
+    };
+
+    mb.onmessage = function (ev) {
+        console.log('message', ev)
+    };
+
+    if (window.mbx) {
+        mb = Object.assign(mb, mbx);
+    }
+
+    mb.ws.addEventListener('error', mb.onerror);
+
+    mb.ws.addEventListener('open', mb.onopen);
+
+    mb.ws.addEventListener('close', mb.onclose);
+
+    mb.ws.addEventListener('message', mb.onmessage);
+</script>
+
 </html>
