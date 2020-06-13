@@ -34,27 +34,31 @@
     <link rel="search" type="application/opensearchdescription+xml" title="Mykhailo Basiuk Search"
         href="/opensearch.xml">
     <style>
+        body {
+            margin: 0;
+        }
+
         .container {
             max-width: 500px;
         }
 
         .card {
-            text-align: left;
             box-shadow: 0 4px 8px rgba(60, 65, 70, 0.2);
             margin: 33vh auto 0;
             padding: 36px;
             width: 428px;
-            height: 190px;
+            height: 170px;
             background: white;
             position: relative;
             font-size: 13px;
             text-transform: uppercase;
+            border-radius: 8px;
         }
 
         .card:hover {
             box-shadow: 0 4px 12px rgba(35, 38, 40, 0.2);
         }
-        
+
         .prof {
             color: #565656;
             letter-spacing: 2.5px;
@@ -67,9 +71,10 @@
             letter-spacing: 6.5px;
             color: black;
         }
-        
-        
-        a, .dval {
+
+
+        a,
+        .dval {
             letter-spacing: 1.6px;
             text-decoration: none;
             color: #565656;
@@ -78,41 +83,48 @@
         a:hover {
             text-decoration: underline;
         }
-        
+
         .details {
             position: absolute;
-            bottom: 26px;
+            bottom: 23px;
         }
 
-        .details > div {
+        .details>div {
             margin: 6px 0 0 0;
         }
-        
+
         .detail {
             color: #F48024;
             display: inline-block;
             width: 1.5em;
         }
-        
+
         .logo {
             background: url('favicon-96x96.png') no-repeat;
             position: absolute;
             width: 96px;
             height: 96px;
-            border-radius: 50%;   
+            border-radius: 50%;
             bottom: 100px;
             right: 36px;
             opacity: 0.3;
             transition: 300ms;
         }
 
-        .logo:hover{
+        .logo:hover {
             opacity: 1;
             transform: rotate(442deg);
         }
 
-        ::selection { background: #f75b2a; color: white; }
-        ::-moz-selection { background: #f75b2a; color: white; }
+        ::selection {
+            background: #f75b2a;
+            color: white;
+        }
+
+        ::-moz-selection {
+            background: #f75b2a;
+            color: white;
+        }
     </style>
 </head>
 
