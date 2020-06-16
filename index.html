@@ -22,10 +22,10 @@
     <meta property='og:url' content="https://mbasiuk.github.io">
     <meta property='og:type' content='website'>
     <meta property='og:description' content="the world&#39;s leading IT expert.">
-    <meta property="og:image" content="https://mbasiuk.github.io/me.png" >
+    <meta property="og:image" content="https://mbasiuk.github.io/me.png">
     <meta property="og:image:width" content="96">
     <meta property="og:image:height" content="96">
-    <meta property="og:image:alt" content="MYKHAILO BASIUK avatar" >
+    <meta property="og:image:alt" content="MYKHAILO BASIUK avatar">
     <meta itemprop="name" content="MYKHAILO BASIUK">
     <meta itemprop="url" content="https://mbasiuk.github.io">
     <meta itemprop="description" content="the world&#39;s leading IT expert.">
@@ -42,21 +42,86 @@
             margin: 0;
         }
 
-        .container {
-            max-width: 500px;
-        }
-
         .card {
             box-shadow: 0 4px 8px rgba(60, 65, 70, 0.2);
-            margin: 33vh auto 0;
-            padding: 36px;
-            width: 428px;
-            height: 170px;
             background: white;
             position: relative;
             font-size: 13px;
             text-transform: uppercase;
             border-radius: 8px;
+            padding: 36px 0;
+        }
+
+        .avatar {
+            margin: 0 auto;
+        }
+
+        .main {
+            margin: 36px auto;
+            text-align: center;
+        }
+
+        .name {
+            letter-spacing: 5.5px;
+        }
+
+        .detail {
+            color: #F48024;
+            display: inline-block;
+            width: 4.5em;
+            text-align: center;
+        }
+
+        a,
+        .dval {
+            letter-spacing: 1.6px;
+            text-decoration: none;
+            color: #565656;
+        }
+
+        a.dval {
+            color: #0081bc;
+        }
+
+        @media (min-width: 500px) {
+
+            .container {
+                max-width: 500px;
+                margin: 33vh auto;
+            }
+
+            .card {
+                width: 428px;
+                height: 170px;
+                margin: 0 auto;
+                padding: 36px;
+            }
+
+            .avatar {
+                position: absolute;
+                bottom: 100px;
+                right: 36px;
+            }
+
+            .main {
+                margin: 0;
+                text-align: left;
+            }
+
+            .details {
+                position: absolute;
+                bottom: 23px;
+            }
+
+            .detail {
+                width: 1.5em;
+                text-align: left;
+            }
+
+            a.dval {
+                text-decoration: none;
+                color: #565656;
+            }
         }
 
         .card:hover {
@@ -77,40 +142,20 @@
         }
 
 
-        a,
-        .dval {
-            letter-spacing: 1.6px;
-            text-decoration: none;
-            color: #565656;
-        }
-
         a:hover {
             text-decoration: underline;
-        }
-
-        .details {
-            position: absolute;
-            bottom: 23px;
         }
 
         .details>div {
             margin: 6px 0 0 0;
         }
 
-        .detail {
-            color: #F48024;
-            display: inline-block;
-            width: 1.5em;
-        }
 
         .avatar {
             background: url('me.png') no-repeat;
-            position: absolute;
             width: 96px;
             height: 96px;
             border-radius: 50%;
-            bottom: 100px;
-            right: 36px;
             opacity: 0.9;
             transition: 300ms;
         }
@@ -135,6 +180,7 @@
 <body>
     <div class="container">
         <div class="card">
+            <div class="avatar"></div>
 
             <div class="main">
                 <span class="name">MYKHAILO BASIUK</span>
@@ -155,8 +201,6 @@
                     <span class="dval">St. Paul, MN, USA</span>
                 </div>
             </div>
-
-            <div class="avatar"></div>
 
         </div>
     </div>
