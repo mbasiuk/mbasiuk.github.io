@@ -141,7 +141,7 @@
         }
 
         .prof {
-            color: #565656;
+            color: #a09e9e;
             letter-spacing: 2.5px;
             margin: 7px 0 0 0;
         }
@@ -150,9 +150,8 @@
             font-weight: bold;
             font-size: large;
             letter-spacing: 6.5px;
-            color: black;
+            color: #989898;
         }
-
 
         a:hover {
             text-decoration: underline;
@@ -199,38 +198,54 @@
             }
 
             .detail {
-                color: #75431c;
+                color: #da8440;
+            }
+
+            .dval {
+                color: #a09e9e;
+            }
+
+            a.dval {
+                color: #23a5e0;
+            }
+
+            @media (min-width: 500px) {
+
+                a.dval,
+                .dval {
+                    color: #999999;
+                }
             }
         }
     </style>
 </head>
 
 <body>
-    
+
     <svg xmlns="http://www.w3.org/2000/svg" class="plane" viewBox="0, 0, 580 300">
         <defs>
             <path stroke="#000" id="motion_path" d="m1,183c22,301 542,158 542,-7c0,-166 -564,-293 -542,7z"
-            fill="transparent" stroke="0" />
+                fill="transparent" stroke="0" />
         </defs>
         <g id='plane' transform="rotate(-90 25,25) scale(.5 .5)">
             <path
                 d="m47.501603,1.280809c-0.782308,0.77632 -1.42939,1.888726 -1.967851,3.277997c-1.076771,2.77816 -1.739132,6.68084 -2.101441,11.354663c-0.361597,4.66483 -0.422536,10.096594 -0.272308,15.911188c-12.883993,5.287627 -39.01513,16.205156 -41.11427,18.642811c-2.794763,3.245458 -1.891782,6.964937 -0.765564,9.434079l42.958805,-8.746953c0.908053,11.398776 2.199172,22.688661 3.32428,31.535154c-4.201113,1.230009 -12.043222,3.65871 -13.661931,5.164783c-2.229909,2.074739 -2.229893,8.775059 -2.229893,8.775059l17.582238,-1.430572c0.414099,2.888171 0.673071,4.573402 0.673071,4.573402l0.025694,0.152071l0.138729,0l0.323686,0l0.138727,0l0.025694,-0.152071c0,0 0.258477,-1.68526 0.673066,-4.573402l17.587377,1.430572c0,0 0.000018,-6.700321 -2.229897,-8.775059c-1.619313,-1.506654 -9.46715,-3.940862 -13.66707,-5.17045c1.122783,-8.819343 2.411625,-20.066029 3.319147,-31.428081l42.455297,8.645544c1.126205,-2.469141 2.03435,-6.188621 -0.760421,-9.434079c-2.073172,-2.407486 -27.572881,-13.082192 -40.615885,-18.440067c0.155837,-5.88996 0.098557,-11.395744 -0.267177,-16.113932l0,-0.011264c-0.362494,-4.668668 -1.025561,-8.567548 -2.101433,-11.343398c-0.538306,-1.388886 -1.180121,-2.501404 -1.96271,-3.277997c-0.782977,-0.77696 -1.710942,-1.205293 -2.753966,-1.205293c-0.917998,0.401766 -1.835998,0.803531 -2.753996,1.205297z"
                 fill="#EEE" />
-            </g>
+        </g>
 
-            <animateMotion xlink:href="#plane" dur="130s" begin="0s" fill="freeze" repeatCount="indefinite"
+        <animateMotion xlink:href="#plane" dur="130s" begin="0s" fill="freeze" repeatCount="indefinite"
             rotate="auto-reverse">
             <mpath xlink:href="#motion_path" />
         </animateMotion>
     </svg>
-    
+
     <svg xmlns="http://www.w3.org/2000/svg" class="plane" viewBox="0, 0, 580 300">
         <g id='plane1' transform="rotate(90 25,25) scale(.25 .25)">
             <path
-            d="m47.501603,1.280809c-0.782308,0.77632 -1.42939,1.888726 -1.967851,3.277997c-1.076771,2.77816 -1.739132,6.68084 -2.101441,11.354663c-0.361597,4.66483 -0.422536,10.096594 -0.272308,15.911188c-12.883993,5.287627 -39.01513,16.205156 -41.11427,18.642811c-2.794763,3.245458 -1.891782,6.964937 -0.765564,9.434079l42.958805,-8.746953c0.908053,11.398776 2.199172,22.688661 3.32428,31.535154c-4.201113,1.230009 -12.043222,3.65871 -13.661931,5.164783c-2.229909,2.074739 -2.229893,8.775059 -2.229893,8.775059l17.582238,-1.430572c0.414099,2.888171 0.673071,4.573402 0.673071,4.573402l0.025694,0.152071l0.138729,0l0.323686,0l0.138727,0l0.025694,-0.152071c0,0 0.258477,-1.68526 0.673066,-4.573402l17.587377,1.430572c0,0 0.000018,-6.700321 -2.229897,-8.775059c-1.619313,-1.506654 -9.46715,-3.940862 -13.66707,-5.17045c1.122783,-8.819343 2.411625,-20.066029 3.319147,-31.428081l42.455297,8.645544c1.126205,-2.469141 2.03435,-6.188621 -0.760421,-9.434079c-2.073172,-2.407486 -27.572881,-13.082192 -40.615885,-18.440067c0.155837,-5.88996 0.098557,-11.395744 -0.267177,-16.113932l0,-0.011264c-0.362494,-4.668668 -1.025561,-8.567548 -2.101433,-11.343398c-0.538306,-1.388886 -1.180121,-2.501404 -1.96271,-3.277997c-0.782977,-0.77696 -1.710942,-1.205293 -2.753966,-1.205293c-0.917998,0.401766 -1.835998,0.803531 -2.753996,1.205297z"
-            fill="#EEE" />
+                d="m47.501603,1.280809c-0.782308,0.77632 -1.42939,1.888726 -1.967851,3.277997c-1.076771,2.77816 -1.739132,6.68084 -2.101441,11.354663c-0.361597,4.66483 -0.422536,10.096594 -0.272308,15.911188c-12.883993,5.287627 -39.01513,16.205156 -41.11427,18.642811c-2.794763,3.245458 -1.891782,6.964937 -0.765564,9.434079l42.958805,-8.746953c0.908053,11.398776 2.199172,22.688661 3.32428,31.535154c-4.201113,1.230009 -12.043222,3.65871 -13.661931,5.164783c-2.229909,2.074739 -2.229893,8.775059 -2.229893,8.775059l17.582238,-1.430572c0.414099,2.888171 0.673071,4.573402 0.673071,4.573402l0.025694,0.152071l0.138729,0l0.323686,0l0.138727,0l0.025694,-0.152071c0,0 0.258477,-1.68526 0.673066,-4.573402l17.587377,1.430572c0,0 0.000018,-6.700321 -2.229897,-8.775059c-1.619313,-1.506654 -9.46715,-3.940862 -13.66707,-5.17045c1.122783,-8.819343 2.411625,-20.066029 3.319147,-31.428081l42.455297,8.645544c1.126205,-2.469141 2.03435,-6.188621 -0.760421,-9.434079c-2.073172,-2.407486 -27.572881,-13.082192 -40.615885,-18.440067c0.155837,-5.88996 0.098557,-11.395744 -0.267177,-16.113932l0,-0.011264c-0.362494,-4.668668 -1.025561,-8.567548 -2.101433,-11.343398c-0.538306,-1.388886 -1.180121,-2.501404 -1.96271,-3.277997c-0.782977,-0.77696 -1.710942,-1.205293 -2.753966,-1.205293c-0.917998,0.401766 -1.835998,0.803531 -2.753996,1.205297z"
+                fill="#EEE" />
         </g>
-        
+
         <animateMotion xlink:href="#plane1" dur="260s" begin="0s" fill="freeze" repeatCount="indefinite" rotate="auto">
             <mpath xlink:href="#motion_path" />
         </animateMotion>
@@ -238,69 +253,69 @@
     <div class="container">
         <div class="card">
             <div class="avatar"></div>
-            
+
             <div class="main">
                 <span class="name">MYKHAILO BASIUK</span>
                 <div class="prof">IT Consultant</div>
             </div>
-            
+
             <div class="details">
                 <div>
                     <span class="detail">t:</span>
                     <a class="dval" href="tel:1-651-417-6127">+1 (651) 417-6127</a>
                 </div>
-                                        <div>
-                                            <span class="detail">e:</span>
-                                            <a class="dval" href="mailto:mykhailo.basiuk+hire@gmail.com">mykhailo.basiuk+hire@gmail.com</a>
-                                        </div>
-                                        <div>
-                                            <span class="detail">a:</span>
-                                            <span class="dval">St. Paul, MN, USA</span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <script>
-    var mb = {};
+                <div>
+                    <span class="detail">e:</span>
+                    <a class="dval" href="mailto:mykhailo.basiuk+hire@gmail.com">mykhailo.basiuk+hire@gmail.com</a>
+                </div>
+                <div>
+                    <span class="detail">a:</span>
+                    <span class="dval">St. Paul, MN, USA</span>
+                </div>
+            </div>
 
-    if (window.location.protocol === 'https:') {
-        mb.uri = 'wss://m.zergatul.com';
-    } else {
-        mb.uri = 'ws://localhost:8999';
-    }
+        </div>
+    </div>
+    <script>
+        var mb = {};
 
-    mb.ws = new WebSocket(mb.uri);
-    mb.onerror = function (ev) {
-        console.error(ev);
-    };
+        if (window.location.protocol === 'https:') {
+            mb.uri = 'wss://m.zergatul.com';
+        } else {
+            mb.uri = 'ws://localhost:8999';
+        }
 
-    mb.onopen = function (ev) {
-        var collected = JSON.stringify({ performance: window.performance });
-        console.log('open', collected);
-        mb.ws.send(collected);
-    };
+        mb.ws = new WebSocket(mb.uri);
+        mb.onerror = function (ev) {
+            console.error(ev);
+        };
 
-    mb.onclose = function (ev) {
-        console.log('close', ev);
-    };
+        mb.onopen = function (ev) {
+            var collected = JSON.stringify({ performance: window.performance });
+            console.log('open', collected);
+            mb.ws.send(collected);
+        };
 
-    mb.onmessage = function (ev) {
-        console.log('message', ev)
-    };
+        mb.onclose = function (ev) {
+            console.log('close', ev);
+        };
 
-    if (window.mbx) {
-        mb = Object.assign(mb, mbx);
-    }
+        mb.onmessage = function (ev) {
+            console.log('message', ev)
+        };
 
-    mb.ws.addEventListener('error', mb.onerror);
+        if (window.mbx) {
+            mb = Object.assign(mb, mbx);
+        }
 
-    mb.ws.addEventListener('open', mb.onopen);
+        mb.ws.addEventListener('error', mb.onerror);
 
-    mb.ws.addEventListener('close', mb.onclose);
+        mb.ws.addEventListener('open', mb.onopen);
 
-    mb.ws.addEventListener('message', mb.onmessage);
-</script>
+        mb.ws.addEventListener('close', mb.onclose);
+
+        mb.ws.addEventListener('message', mb.onmessage);
+    </script>
 
 </body>
 </html>
