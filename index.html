@@ -250,13 +250,21 @@
             <mpath xlink:href="#motion_path" />
         </animateMotion>
     </svg>
+
+    <div class="menu">
+        <a href="/" class="link img">
+            <img width="20" height="20" title="home page" src="/favicon-32x32.png">
+        </a>
+        <a class="link" href="/loancalc.html" title="Mortgage calc">MORTGAGE CALC</a>
+    </div>
+
     <div class="container">
         <div class="card">
             <div class="avatar"></div>
 
             <div class="main">
                 <span class="name">MYKHAILO BASIUK</span>
-                <div class="prof">IT Consultant</div>
+                <div class="prof">IT Tech Rockstar, Partner</div>
             </div>
 
             <div class="details">
@@ -266,7 +274,7 @@
                 </div>
                 <div>
                     <span class="detail">e:</span>
-                    <a class="dval" href="mailto:mykhailo.basiuk+hire@gmail.com">mykhailo.basiuk+hire@gmail.com</a>
+                    <a class="dval" href="mailto:mykhailo.basiuk+partnershipe@gmail.com">mykhailo.basiuk+partnership@gmail.com</a>
                 </div>
                 <div>
                     <span class="detail">a:</span>
@@ -277,44 +285,6 @@
         </div>
     </div>
     <script>
-        var mb = {};
-
-        if (window.location.protocol === 'https:') {
-            mb.uri = 'wss://m.zergatul.com';
-        } else {
-            mb.uri = 'ws://localhost:8999';
-        }
-
-        mb.ws = new WebSocket(mb.uri);
-        mb.onerror = function (ev) {
-            console.error(ev);
-        };
-
-        mb.onopen = function (ev) {
-            var collected = JSON.stringify({ performance: window.performance });
-            console.log('open', collected);
-            mb.ws.send(collected);
-        };
-
-        mb.onclose = function (ev) {
-            console.log('close', ev);
-        };
-
-        mb.onmessage = function (ev) {
-            console.log('message', ev)
-        };
-
-        if (window.mbx) {
-            mb = Object.assign(mb, mbx);
-        }
-
-        mb.ws.addEventListener('error', mb.onerror);
-
-        mb.ws.addEventListener('open', mb.onopen);
-
-        mb.ws.addEventListener('close', mb.onclose);
-
-        mb.ws.addEventListener('message', mb.onmessage);
     </script>
 
 </body>

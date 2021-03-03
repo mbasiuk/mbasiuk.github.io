@@ -38,3 +38,38 @@ body {
 a {
     color: #F48024;
 }
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    display: flex;
+    font-size: 11px;
+}
+
+.link {
+    align-self: center;
+    margin: 0 20px 0 0;
+    letter-spacing: 1.6px;
+}
+
+.link img {
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: 300ms;
+}
+
+.link .img {
+    height: 20px;
+}
+
+.link img:hover {
+    opacity: 1;
+}
+
+@media (min-width: 500px) {
+    .menu {
+        position: fixed;
+    }
+}
