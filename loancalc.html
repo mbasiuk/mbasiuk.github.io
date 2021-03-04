@@ -38,7 +38,8 @@
         }
         
         body,
-        input {
+        input,
+        button {
             font-family: 'Roboto', Tahoma, sans-serif;
         }
         
@@ -53,11 +54,11 @@
             font-size: 13px;
             text-transform: uppercase;
             border-radius: 8px;
-            padding: 36px 0;
+            padding: 36px 0 7px 0;
             color: #565656;
             letter-spacing: 1.6px;
         }
-
+        
         .card:hover {
             box-shadow: 0 4px 12px rgba(35, 38, 40, 0.2);
         }
@@ -67,10 +68,35 @@
         }
         
         .label {
-            width: 15em;
             display: inline-block;
             text-align: left;
             font-size: 11px;
+            width: 100%
+        }
+        
+        .btn {
+            padding: 0.2em 1em;
+            background: white;
+            border: 1px solid #a09e9e;
+            color: #565656;
+        }
+        
+        .btn:hover {
+            border: 1px solid #23a5e0;
+        }
+        
+        .btn:focus {
+            outline: none;
+        }
+        
+        div.action {
+            margin: 1em 0;
+        }
+        
+        @media (min-width: 500px) {
+            .label {
+                width: 15em;
+            }
         }
         
         .mini {
@@ -85,12 +111,13 @@
             letter-spacing: 6.5px;
             color: #989898;
             width: 100%;
+            padding: 0 0 1em 0;
         }
         
         .label.med {
             color: #a09e9e;
             letter-spacing: 1.5px;
-            margin: 7px 0 40px 0;
+            margin: 40px 0 0px 0;
             width: 100%;
             font-size: 10px;
         }
@@ -102,9 +129,8 @@
             }
             .card {
                 width: 428px;
-                height: 250px;
                 margin: 0 auto;
-                padding: 36px;
+                padding: 36px 18px 18px 36px;
             }
         }
     </style>
@@ -125,7 +151,7 @@
 
             <div class="label big">Mortgage calc
             </div>
-            <div class="label med">Fixed-rate loans calc for the United States. Read more about rules and formula on <a href="https://en.wikipedia.org/wiki/Fixed-rate_mortgage">wikipedia</a>. </div>
+
             <div>
                 <span class="label">Mortgage amount:</span>
                 <input type="text" id="principal" autofocus="autofocus" value="$220,000">
@@ -138,6 +164,9 @@
                 <span class="label">Interest rate:</span>
                 <input type="text" id="interest" value="3.92%">
             </div>
+            <div class="action">
+                <button id="calculate" class="btn" onclick="refresh()">Calculate</button>
+            </div>
             <div>
                 <span class="label mini">Calculated:</span>
             </div>
@@ -148,6 +177,8 @@
             <div>
                 <span class="label">Montly payment:</span>
                 <input type="text" id="monthly" readonly="readonly">
+            </div>
+            <div class="label med">Fixed-rate loans calc for the United States. Read more about rules and formula on <a href="https://en.wikipedia.org/wiki/Fixed-rate_mortgage">wikipedia</a>.
             </div>
         </div>
     </div>
@@ -184,11 +215,20 @@
                 var total = monthly * N;
             }
 
-            iTotal.value = '$' + format(total);
-            iMonthly.value = '$' + format(monthly);
             iPrincipal.value = '$' + format(principal);
             iInterest.value = interest + '%';
             iYearth.value = yearh;
+
+            var steps = 5;
+            for (var i = 0; i <= steps; i++) {
+                (function (x) {
+                    setTimeout(function () {
+                        var progress = x / steps;
+                        iTotal.value = '$' + format(total * progress);
+                        iMonthly.value = '$' + format(monthly * progress);
+                    }, x * 50);
+                })(i);
+            }
         }
 
         refresh();
