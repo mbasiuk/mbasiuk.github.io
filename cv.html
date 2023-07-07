@@ -63,6 +63,14 @@
          font-size: 18px;
       }
 
+      .size-4 {
+         font-size: 12px;
+      }
+
+      .bold {
+         font-weight: bold;
+      }
+
       .left-border {
          background: rgb(49, 60, 78);
          min-width: 12px;
@@ -134,8 +142,28 @@
          margin-left: 2rem;
       }
 
+      .ml-3 {
+         margin-left: 3rem;
+      }
+
       .ls-2 {
          letter-spacing: 2px;
+      }
+
+      .img-contain {
+         object-fit: contain;
+      }
+
+      .ex-time {
+         font-size: 12px;
+      }
+
+      .ex-company {
+         margin: 3px 0;
+      }
+
+      .ex-logo {
+         margin-top: 5px;
       }
    </style>
 </head>
@@ -180,14 +208,17 @@
    <div class="flex">
 
       <div class="flex flex-col ml-2">
-         <div class="flex size-2 mb-2">
-            <div class="flex flex-center">
-               <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30">
-                  <path fill="rgb(49, 60, 78)"
-                     d="M140-120q-24 0-42-18t-18-42v-480q0-24 18-42t42-18h180v-100q0-24 18-42t42-18h200q24 0 42 18t18 42v100h180q24 0 42 18t18 42v480q0 24-18 42t-42 18H140Zm240-600h200v-100H380v100Zm440 349H571v60H391v-60H140v191h680v-191Zm-369 0h60v-60h-60v60Zm-311-60h251v-60h180v60h249v-229H140v229Zm340 30Z" />
-               </svg>
-               <span>Work Experience</span>
-            </div>
+         <div class="flex flex-center size-2 mb-2">
+            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30">
+               <path fill="rgb(49, 60, 78)"
+                  d="M140-120q-24 0-42-18t-18-42v-480q0-24 18-42t42-18h180v-100q0-24 18-42t42-18h200q24 0 42 18t18 42v100h180q24 0 42 18t18 42v480q0 24-18 42t-42 18H140Zm240-600h200v-100H380v100Zm440 349H571v60H391v-60H140v191h680v-191Zm-369 0h60v-60h-60v60Zm-311-60h251v-60h180v60h249v-229H140v229Zm340 30Z" />
+            </svg>
+            <span>Work Experience</span>
+         </div>
+
+         <div class="flex flex-col mb-2 ml-3">
+            <span class="size-3 accent">Total</span>
+            <span class="total accent-2 bold">12 years</span>
          </div>
 
          <div class="flex mb-1">
@@ -208,7 +239,7 @@
             </div>
          </div>
 
-         <div class="flex">
+         <div class="flex mb-1">
 
             <div class="ex-logo mr-1">
                <img src="gl.jpg" width="30" height="30" />
@@ -216,7 +247,7 @@
 
             <div class="flex flex-col">
                <div class="ex-title accent">
-                  Full Stack Developer
+                  Senior Software Engineer
                </div>
                <div class="ex-company">
                   GlobalLogic
@@ -226,6 +257,81 @@
                </div>
             </div>
          </div>
+
+         <div class="flex mb-1">
+
+            <div class="ex-logo mr-1">
+               <img src="luxoft.jpg" width="30" height="30" />
+            </div>
+
+            <div class="flex flex-col">
+               <div class="ex-title accent">
+                  Senior Full Stack Developer
+               </div>
+               <div class="ex-company">
+                  Luxoft
+               </div>
+               <div class="ex-time">
+                  Jun 2016 - Feb 2018 (1 year 9 months)
+               </div>
+            </div>
+         </div>
+
+         <div class="flex mb-1">
+
+            <div class="ex-logo mr-1">
+               <img src="infopulse.jpg" width="30" height="30" />
+            </div>
+
+            <div class="flex flex-col">
+               <div class="ex-title accent">
+                  Senior Full Stack Developer
+               </div>
+               <div class="ex-company">
+                  Infopulse
+               </div>
+               <div class="ex-time">
+                  Sep 2015 - Jun 2016 (10 months)
+               </div>
+            </div>
+         </div>
+
+         <div class="flex mb-1">
+            <div class="ex-logo mr-1">
+               <img src="gl.jpg" width="30" height="30" />
+            </div>
+
+            <div class="flex flex-col">
+               <div class="ex-title accent">
+                  Software Engineer
+               </div>
+               <div class="ex-company">
+                  GlobalLogic
+               </div>
+               <div class="ex-time">
+                  Jul 2012 - Aug 2015 (3 years 2 months)
+               </div>
+            </div>
+         </div>
+
+         <div class="flex mb-1">
+            <div class="ex-logo mr-1">
+               <img class="img-contain" src="sl.png" width="30" height="30" />
+            </div>
+
+            <div class="flex flex-col">
+               <div class="ex-title accent">
+                  Developer
+               </div>
+               <div class="ex-company">
+                  Solverlabs
+               </div>
+               <div class="ex-time">
+                  Jun 2011 - Jun 2012 (1 year 1 month)
+               </div>
+            </div>
+         </div>
+
       </div>
 
    </div>
