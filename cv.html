@@ -128,6 +128,10 @@
          margin-bottom: 2rem;
       }
 
+      .mb-3 {
+         margin-bottom: 3rem;
+      }
+
       .mb-1 {
          margin-bottom: 1rem;
       }
@@ -198,6 +202,14 @@
       .flex-1 {
          flex: 1;
       }
+
+      .tag {
+         padding: .4em .5em;
+         margin: 2px 0;
+         background-color: rgb(225, 236, 244);
+
+      }
+
    </style>
 </head>
 
@@ -372,7 +384,7 @@
 
       <div class="flex flex-1 flex-col mr-2">
          <span class="size-2 mb-2">Technical Skills</span>
-         <div class="flex skills">
+         <div class="flex skills mb-3">
             <div class="flex">
                <svg fill="none" height="20" viewBox="204.925 153.577 757.617 860.543" width="20"
                   xmlns="http://www.w3.org/2000/svg">
@@ -545,10 +557,34 @@
                <span>linux</span>
             </div>
          </div>
+         <span class="size-2 ">About</span>
+         <div class="mb">
+            <ul>
+               <li class="mb-1">
+                  Unique skill to read and understand production logs. Real production experince with troubleshooting using tools like <span class="tag">splunk</span>, 
+                  <span class="tag">aws cloudwatch logs</span>,
+                  <span class="tag">azure monitoring insights</span>,
+                  resolving issues, designing and implementing dashboads, alerts.
+               </li>
+               <li class="mb-1">
+                  Development of backend services. Experince with services from prototype stage to 
+                  high load IoT with millions of production users and mission critical IoT services.
+               </li>
+               <li class="mb-1">
+                  Understanding the principles of design, CSS, HTTP protocol, cookies, headers, certificates, WebSockets, JS, tooling like postman,
+                  browser dev tools, figma, collaboration with designer skills.
+                  My deep understanding of CSS helped to build development and delivery process for web UI.
+               </li>
+               <li class="mb-1">
+                  Love <span class="tag">splunk</span>, 
+                  <span class="tag">powershell</span>,
+                  <span class="tag">outer apply</span> and 
+                  <span class="tag">flexboxes</span>.
+               </li>
+            </ul>
+         </div>
       </div>
-
    </div>
-
 </body>
 
 </html>
