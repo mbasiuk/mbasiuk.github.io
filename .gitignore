@@ -1,9 +1,16 @@
 # Logs
 logs
 *.log
+
+# .Netcore build folders
 /bin
 /obj
+# Netcore runtime configs folder
+/Properties
+
+# Netcore environment configs.
 appsettings.*.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
