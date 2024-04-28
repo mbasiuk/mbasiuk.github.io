@@ -1,6 +1,7 @@
 {
-    "name": "Mykhailo Basiuk personal website.",
+    "name": "Mykhailo Basiuk.",
     "short_name": "mbasiuk",
+    "description": "Mykhailo's personal website with contact details.",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
