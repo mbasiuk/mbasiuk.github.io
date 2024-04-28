@@ -1,2 +1,2 @@
-# mbasiuk.github.io
+# mbasiuk.com
 my personal website.

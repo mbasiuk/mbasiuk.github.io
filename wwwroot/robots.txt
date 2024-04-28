@@ -12,5 +12,4 @@ Disallow: /?q$
 Disallow: /index.html?q=
 Disallow: /index.html?q$
 
-
-Sitemap: https://mbasiuk.github.io/sitemap.xml
+Sitemap: https://mbasiuk.com/sitemap.xml
