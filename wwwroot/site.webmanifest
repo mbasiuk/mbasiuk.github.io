@@ -1,5 +1,5 @@
 {
-    "name": "Mykhailo Basiuk",
+    "name": "Mykhailo Basiuk personal website.",
     "short_name": "mbasiuk",
     "icons": [
         {
@@ -8,5 +8,6 @@
             "type": "image/png"
         }
     ],
-    "display": "standalone"
+    "display": "standalone",
+    "start_url": "/"
 }
