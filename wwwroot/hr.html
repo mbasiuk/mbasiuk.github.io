@@ -18,7 +18,6 @@
     <link href="contact.vcf" rel="contact">
     <style>
         body {
-            background: black;
             color: #838383;
             font-family: 'Roboto', Tahoma, sans-serif;
             letter-spacing: 1px;
@@ -27,7 +26,6 @@
         .actions a {
             display: inline-flex;
             line-height: 1em;
-            background: black;
             text-decoration: none;
             margin: 0.5em 0;
         }
@@ -45,7 +43,7 @@
         }
 
         a:hover {
-            color: #e3e3e3;
+            color: #23a5e0;
         }
 
         .container {
@@ -80,20 +78,25 @@
 
         #pos:hover {
             object-position: 0 -130px;
-            transition:2s ease;
+            transition: 2s ease;
         }
 
-        #res:hover{
+        #res:hover {
             object-position: 0 -30px;
-            transition:.8s ease;
+            transition: .8s ease;
         }
 
-        ::selection,
+      
+        ::selection {
+            background: #f75b2a;
+            color: white;
+        }
+
         ::-moz-selection {
             background: #f75b2a;
             color: white;
         }
-        
+
         .detail {
             color: #F48024;
         }
@@ -102,6 +105,15 @@
             letter-spacing: 1.6px;
         }
 
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: black;
+            }
+
+            .actions a {
+                background: black;
+            }
+        }
     </style>
 </head>
 

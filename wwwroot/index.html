@@ -129,7 +129,7 @@
 
             a.dval {
                 text-decoration: none;
-                color: #565656;
+               
             }
         }
 
@@ -189,11 +189,17 @@
         .actions a {
             display: inline-block;
             line-height: 1em;
-            border: 1px solid white;
-            padding: 0.5em;
-            background: black;
+            padding: 0.8em;        
             text-decoration: none;
+            border: 1px solid #23a5e0;
             margin: 0 0.2em;
+            border-radius: 22px;
+        }
+
+        .actions a:hover
+        {
+            color: #23a5e0;
+            text-decoration: underline;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -222,11 +228,8 @@
                 color: #23a5e0;
             }
 
-            @media (min-width: 500px) {
-                a.dval,
-                .dval {
-                    color: #999999;
-                }
+            .actions a {
+                background: black;
             }
         }
     </style>

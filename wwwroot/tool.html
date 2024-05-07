@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool</title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="description" content="client search tool">
+    <title>Dashboard: </title>
+    <style>
+        body,
+        input,
+        textarea {
+            font-family: 'Roboto', Tahoma, sans-serif;
+            font-size: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 20em;
+        }
+
+        label,
+        input[type=submit] {
+            margin: 1em 0 0 0;
+        }
+
+        h2 {
+            font-size: larger;
+        }
+    </style>
 </head>
+
 <body>
-    Hello
+    <div>
+        <h2>Search businesses:</h2>
+        <a href="https://dsbs.sba.gov">dsdb.sba.gov</a>
+    </div>
+
+    <form method="post" action="tool/search">
+        <h2>
+            Add new Search Description:
+        </h2>
+        <label for="criterias">Criterias:</label>
+        <textarea id="criterias" name="criterias"></textarea>
+        <input type="submit">
+    </form>
+
+    <div>
+        Search history:
+    </div>
+
+    <form method="post" action="tool/company">
+        <h2>Company</h2>
+        <label for="id">ID:</label>
+        <input type="text" name="id" id="id" readonly>
+        <label for="url">URL:</label>
+        <input type="text" name="url" id="url" />
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" />
+        <label for="weight">Weight:</label>
+        <input type="number" name="weight" id="weight" />
+        <input type="submit" />
+    </form>
+
 </body>
+
 </html>

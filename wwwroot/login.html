@@ -1,21 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <title>Login</title>
+    <style>
+        body, input {
+            font-family: 'Roboto', Tahoma, sans-serif;
+            letter-spacing: 1.3px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(60, 65, 70, 0.2);
+            background: white;
+            position: relative;
+            font-size: 13px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            padding: 3em 0;
+            width: 30em;
+            margin: 20vh auto;
+        }
+
+        .card:hover {
+            box-shadow: 0 7px 11px rgba(60, 65, 70, 0.2);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: black;
+            }
+
+            .card 
+            {
+                background: rgb(49, 49, 49);
+                color: rgb(160, 158, 158);
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=submit] {
+            border: 1px solid;
+            outline: none;
+            padding: .2em .3em;
+            border: 1px solid;
+            border-radius: 3px;
+        }
+
+        input[type=submit] {
+            border-radius: 10px;
+            padding: 0.4em 1.8em;
+            letter-spacing: 1.3px;
+        }
+
+    </style>
 </head>
+
 <body>
-    <form action="/login" method="post">
-        <label>
-            <span>Login:</span>
-            <input id="user" name="user" type="text">
-        </label>
-        <label>
-            <span>Password:</span>
-            <input id="password" name="password" type="password">
-        </label>
-        <input type="submit" name="submit" id="submit" value="submit" />
-    </form>
+
+    <div class="card">
+        <form action="/login" method="post">
+            <label>
+                <span>Login:</span>
+                <input id="user" name="user" type="text">
+            </label>
+            <label>
+                <span>Password:</span>
+                <input id="password" name="password" type="password">
+            </label>
+            <input type="submit" name="submit" id="submit" value="submit" />
+        </form>
+    </div>
 </body>
+
 </html>

@@ -13,7 +13,7 @@ class CookieAuthFilter : IEndpointFilter
     public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
     {
         var auth = context.HttpContext.Request.Cookies["auth"];
-        if (auth != loginOptions.Hash())
+        if (auth != loginOptions.Secret)
         {
             return Results.Unauthorized();
         }
