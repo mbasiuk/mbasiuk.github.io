@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.Data.Sqlite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,10 +40,34 @@ app.MapPost("tool1/company", ([FromForm]Company company, HttpClient context) =>
 }).AddEndpointFilter<CookieAuthFilter>();
 */
 
-app.MapPost("tool/search", ([FromForm]Company company, HttpContext context) => 
+app.MapPost("tool/search", ([FromForm] CompanySearch company, HttpContext context) =>
 {
+    var result = company.Save();
+    app.Logger.LogInformation("/tool/search save result: {0}", result);
     return Results.Redirect("/tool");
-}).AddEndpointFilter<CookieAuthFilter>();
+}).AddEndpointFilter<CookieAuthFilter>()
+#if NET8_0_OR_GREATER
+.DisableAntiforgery()
+#endif
+;
+
+app.MapPost("/tool/init", (HttpContext context) => {
+    CompanySearch.Create();
+    return Results.Redirect("/tool");
+}).AddEndpointFilter<CookieAuthFilter>()
+#if NET8_0_OR_GREATER
+.DisableAntiforgery()
+#endif
+;
+
+app.MapPost("/tool/search/recent", (HttpContext context) => {
+    return Results.Ok(CompanySearch.Recent());
+}).AddEndpointFilter<CookieAuthFilter>()
+#if NET8_0_OR_GREATER
+.DisableAntiforgery()
+#endif
+;
+
 
 app.MapPost("login", ([FromForm] LoginRecord login, HttpContext context, IOptions<LoginOptions> options) =>
 {
@@ -72,5 +97,3 @@ app.MapPost("login", ([FromForm] LoginRecord login, HttpContext context, IOption
 app.Run();
 
 record LoginRecord(string User, string Password);
-
-record Company(Guid Id, string Url, string Email, int Weight);

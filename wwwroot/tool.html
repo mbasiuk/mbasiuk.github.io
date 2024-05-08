@@ -37,13 +37,42 @@
         h2 {
             font-size: larger;
         }
+
+        ::selection {
+            background: #f75b2a;
+            color: white;
+        }
+
+        ::-moz-selection {
+            background: #f75b2a;
+            color: white;
+        }
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #searchbiz {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
     </style>
 </head>
 
 <body>
-    <div>
+    <div id="searchbiz">
         <h2>Search businesses:</h2>
         <a href="https://dsbs.sba.gov">dsdb.sba.gov</a>
+    </div>
+
+    <div>
+        <h2>Init Search Business:</h2>
+        <form action="tool/init" method="post">
+            <input type="submit" value="submit" />
+        </form>
     </div>
 
     <form method="post" action="tool/search">
@@ -51,13 +80,9 @@
             Add new Search Description:
         </h2>
         <label for="criterias">Criterias:</label>
-        <textarea id="criterias" name="criterias"></textarea>
+        <textarea id="description" name="description"></textarea>
         <input type="submit">
     </form>
-
-    <div>
-        Search history:
-    </div>
 
     <form method="post" action="tool/company">
         <h2>Company</h2>
@@ -73,5 +98,32 @@
     </form>
 
 </body>
+<script>
+
+    function renderRecentSearch(data) {
+        var json;
+        if (!(xhr.readyState == 4 && xhr.status == 200 && (json = JSON.parse(xhr.responseText)) && json.length)) return;
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < json.length; i++) {
+            var search = json[i];
+            //var d = document.createElement("div");
+            var el = document.createElement("a");
+            var sp = document.createElement("span");
+            sp.textContent = search.description;
+            //d.appendChild(sp);
+            el.href = "/tool/search/" + search.id;
+            el.textContent = search.id;
+            frag.appendChild(el);
+            frag.appendChild(sp);
+        }
+        document.getElementById("searchbiz").appendChild(frag);
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/tool/search/recent", true);
+    xhr.onreadystatechange = renderRecentSearch;
+    xhr.send(null);
+
+</script>
 
 </html>
