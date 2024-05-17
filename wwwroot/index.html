@@ -30,7 +30,8 @@
     <meta itemprop="url" content="https://mbasiuk.com">
     <meta itemprop="description" content="the world&#39;s leading IT expert.">
     <meta name="description" content="the world&#39;s leading IT expert.">
-    <link rel="search" type="application/opensearchdescription+xml" title="Mykhailo Basiuk Search" href="/opensearch.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Mykhailo Basiuk Search"
+        href="/opensearch.xml">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="MYKHAILO BASIUK">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -129,7 +130,7 @@
 
             a.dval {
                 text-decoration: none;
-               
+
             }
         }
 
@@ -181,7 +182,7 @@
             background: #f75b2a;
             color: white;
         }
-        
+
         .actions {
             margin: 3em 0 0 0;
         }
@@ -189,15 +190,14 @@
         .actions a {
             display: inline-block;
             line-height: 1em;
-            padding: 0.8em;        
+            padding: 0.8em;
             text-decoration: none;
             border: 1px solid #23a5e0;
             margin: 0 0.2em;
             border-radius: 22px;
         }
 
-        .actions a:hover
-        {
+        .actions a:hover {
             color: #23a5e0;
             text-decoration: underline;
         }
@@ -299,10 +299,15 @@
             <a href="angels.html">For Angel Investors</a>
             -->
             <a href="/hr">For HRs</a>
+            <a href="/tool">For Me</a>
         </div>
     </div>
     <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/home_page/", true);
+        xhr.send(null);
     </script>
 
 </body>
+
 </html>

@@ -1,11 +1,11 @@
 
 using Microsoft.Extensions.Options;
 
-class CookieAuthFilter : IEndpointFilter
+class AuthorizeSuperUserFilter : IEndpointFilter
 {
     readonly LoginOptions loginOptions;
 
-    public CookieAuthFilter(IOptions<LoginOptions> options)
+    public AuthorizeSuperUserFilter(IOptions<LoginOptions> options)
     {
         loginOptions = options.Value;
     }
@@ -15,7 +15,7 @@ class CookieAuthFilter : IEndpointFilter
         var auth = context.HttpContext.Request.Cookies["auth"];
         if (auth != loginOptions.Secret)
         {
-            return Results.Unauthorized();
+            return Results.Redirect("/login");
         }
         return await next(context);
     }

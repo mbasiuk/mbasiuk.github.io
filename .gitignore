@@ -1,3 +1,6 @@
+# Database Files
+*.db
+
 # Logs
 logs
 *.log
