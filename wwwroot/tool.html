@@ -59,6 +59,29 @@
             flex: 1;
         }
 
+        .date {
+            background-color: yellow;
+        }
+
+        #visits {
+            padding: 1em;
+        }
+
+        #visitbypages {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #visitbypages a {
+            flex: 0 0 auto;
+            width: 50%;
+        }
+
+        #visitbypages span {
+            flex: 1 0 0;
+            padding: 0 0 0 1em;
+        }
+        
     </style>
 </head>
 
@@ -66,13 +89,6 @@
     <div id="searchbiz">
         <h2>Search businesses:</h2>
         <a href="https://dsbs.sba.gov">dsdb.sba.gov</a>
-    </div>
-
-    <div>
-        <h2>Init Search Business:</h2>
-        <form action="tool/init" method="post">
-            <input type="submit" value="submit" />
-        </form>
     </div>
 
     <form method="post" action="tool/search">
@@ -97,6 +113,14 @@
         <input type="submit" />
     </form>
 
+    <div id="visits">
+        <h2>Visits: </h2>
+        <div id="visittotal"></div>
+        <div>By Pages:</div>
+        <div id="visitbypages">
+        </div>
+    </div>
+
 </body>
 <script>
 
@@ -106,15 +130,19 @@
         var frag = document.createDocumentFragment();
         for (var i = 0; i < json.length; i++) {
             var search = json[i];
-            //var d = document.createElement("div");
             var el = document.createElement("a");
             var sp = document.createElement("span");
+            var cr = document.createElement("span");
+            cr.className = "date";
+            if (search.created) {
+                cr.textContent = new Date(search.created).toLocaleString();
+            }
             sp.textContent = search.description;
-            //d.appendChild(sp);
             el.href = "/tool/search/" + search.id;
             el.textContent = search.id;
             frag.appendChild(el);
             frag.appendChild(sp);
+            frag.appendChild(cr);
         }
         document.getElementById("searchbiz").appendChild(frag);
     }
@@ -123,6 +151,38 @@
     xhr.open("POST", "/tool/search/recent", true);
     xhr.onreadystatechange = renderRecentSearch;
     xhr.send(null);
+
+    function renderVisits(data) {
+        var json;
+        if (!(xhr1.readyState == 4 && xhr1.status == 200 && (json = JSON.parse(xhr1.responseText)) && json.length)) return;
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < json.length; i++) {
+            var visit = json[i];
+            var page = document.createElement("a");
+            page.textContent = visit.page;
+            page.setAttribute("href", "/tool/visits/page/" + escape(visit.page));
+
+            var total = document.createElement("span");
+            total.textContent = visit.total; 
+            
+            var unique = document.createElement("span");
+            unique.textContent = visit.unique;
+            
+            var newVisitors = document.createElement("span");
+            newVisitors.textContent = visit.n;
+
+            frag.appendChild(page);
+            frag.appendChild(total);
+            frag.appendChild(unique);
+            frag.appendChild(newVisitors);
+        }
+        document.getElementById("visitbypages").appendChild(frag);
+    }
+
+    var xhr1 = new XMLHttpRequest();
+    xhr1.open("POST", "/tool/visits", true);
+    xhr1.onreadystatechange = renderVisits;
+    xhr1.send(null);
 
 </script>
 

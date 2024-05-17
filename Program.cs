@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
-using Microsoft.Data.Sqlite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,42 +32,39 @@ app.MapGet("login", () =>
 app.MapGet("tool", (HttpContext context) =>
 {
     return Results.File("tool.html", contentType: "text/html");
-}).AddEndpointFilter<CookieAuthFilter>();
-/*
-app.MapPost("tool1/company", ([FromForm]Company company, HttpClient context) => 
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
+
+app.MapPost("home_page", () => Results.Ok());
+
+app.MapPost("tool/visits", (HttpContext context) =>
 {
-    return Results.Redirect("/tool");
-}).AddEndpointFilter<CookieAuthFilter>();
-*/
+    return Visit.GetSummary();
+    /*
+    return new[] {
+        new { page = "hr", total = 10, unique = 5, n = 2 },
+        new { page = "index", total = 15, unique = 10, n = 8 }
+    };*/
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
 app.MapPost("tool/search", ([FromForm] CompanySearch company, HttpContext context) =>
 {
     var result = company.Save();
     app.Logger.LogInformation("/tool/search save result: {0}", result);
     return Results.Redirect("/tool");
-}).AddEndpointFilter<CookieAuthFilter>()
+}).AddEndpointFilter<AuthorizeSuperUserFilter>()
 #if NET8_0_OR_GREATER
 .DisableAntiforgery()
 #endif
 ;
 
-app.MapPost("/tool/init", (HttpContext context) => {
-    CompanySearch.Create();
-    return Results.Redirect("/tool");
-}).AddEndpointFilter<CookieAuthFilter>()
-#if NET8_0_OR_GREATER
-.DisableAntiforgery()
-#endif
-;
-
-app.MapPost("/tool/search/recent", (HttpContext context) => {
+app.MapPost("/tool/search/recent", (HttpContext context) =>
+{
     return Results.Ok(CompanySearch.Recent());
-}).AddEndpointFilter<CookieAuthFilter>()
+}).AddEndpointFilter<AuthorizeSuperUserFilter>()
 #if NET8_0_OR_GREATER
 .DisableAntiforgery()
 #endif
 ;
-
 
 app.MapPost("login", ([FromForm] LoginRecord login, HttpContext context, IOptions<LoginOptions> options) =>
 {
@@ -93,6 +90,13 @@ app.MapPost("login", ([FromForm] LoginRecord login, HttpContext context, IOption
 .DisableAntiforgery()
 #endif
 ;
+
+app.Use(async (context, next) => {
+    var session = new Session(context);
+    var visit = new Visit(context);
+    visit.Track();
+    await next.Invoke();
+});
 
 app.Run();
 
