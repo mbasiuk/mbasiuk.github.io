@@ -44,10 +44,6 @@ public class Session : LiteEntity
         context.Items[nameof(SessionId)] = SessionId;
     }
 
-    public void TrackPage(HttpContext context)
-    {
-    }
-
     private void CreateContextParams(SqliteCommand cmd)
     {
         cmd.Parameters.Add(new SqliteParameter("connection_id", ConnectionId));
