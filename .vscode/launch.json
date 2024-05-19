@@ -10,8 +10,8 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net8.0/mbasiuk.github.io.dll",
-            "args": ["urls=https://localhost:5001"],
+            "program": "${workspaceFolder}/bin/Debug/net7.0/mbasiuk.github.io.dll",
+            "args": ["urls=https://localhost:5001", "--framework=net7.0"],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "serverReadyAction": {

@@ -1,16 +1,15 @@
-class LoginOptions
+class SignInOptions
 {
     public const string DefaultSection = "LoginOptions";
     public string User { get; set; } = null!;
     public string Password { get; set; } = null!;
     public string Secret { get; set; } = null!;
 
-    public bool IsValid(LoginRecord login)
+    public bool IsValid(SignInRecord singIn)
     {
         return (User != null)
         && (Password != null)
-        && (login != null)
-        && (login.User == User)
-        && (login.Password == Password);
+        && (singIn.User == User)
+        && (singIn.Password == Password);
     }
 }
