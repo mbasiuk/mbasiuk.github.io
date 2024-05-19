@@ -57,12 +57,18 @@ public class Session : LiteEntity
 
     private void UpdateFromContext(HttpContext context)
     {
-        ConnectionId = context.Connection.Id;
+        ConnectionId = context.Connection.Id ?? "unset";
         AcceptedLang = context.Request.Headers.AcceptLanguage;
+        AcceptedLang ??= "unset";
         LocalIp = context.Connection.LocalIpAddress?.ToString();
+        LocalIp ??= "unset";
         LocalPort = context.Connection.LocalPort;
+        LocalPort ??= 0;
         Ip = context.Connection.RemoteIpAddress?.ToString();
+        Ip ??= "unset";
         Port = context.Connection.RemotePort;
+        Port ??= 0;
         UserAgent = context.Request.Headers.UserAgent;
+        UserAgent ??= "unset";
     }
 }
