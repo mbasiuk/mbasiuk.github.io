@@ -14,9 +14,9 @@ public class Visit : LiteEntity
         Date = DateTimeOffset.UtcNow;
         Page = context.Request.Path;
         SessionId = (string)context.Items[nameof(SessionId)]!;
-        Auth = context.Request.Cookies["auth"]?.ToString();
-        ConnectionId = context.Connection.Id;
-        Ip = context.Connection.RemoteIpAddress?.ToString();
+        Auth = context.Request.Cookies["auth"]?.ToString() ?? "unset";
+        ConnectionId = context.Connection.Id ?? "unset";
+        Ip = context.Connection.RemoteIpAddress?.ToString() ?? "unset";
     }
 
     public void Track()
