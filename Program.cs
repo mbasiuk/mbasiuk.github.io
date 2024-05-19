@@ -1,16 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAntiforgery();
-builder.Services.Configure<LoginOptions>(builder.Configuration.GetSection(LoginOptions.DefaultSection));
+builder.Services.Configure<SignInOptions>(builder.Configuration.GetSection(SignInOptions.DefaultSection));
 
 var app = builder.Build();
-#if NET8_0_OR_GREATER
-app.UseAntiforgery();
-#endif
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -24,9 +19,9 @@ app.MapGet("/resume", () =>
     return Results.File(@"cv/cv.html", contentType: "text/html");
 });
 
-app.MapGet("login", () =>
+app.MapGet("signin", () =>
 {
-    return Results.File("login.html", contentType: "text/html");
+    return Results.File("signin.html", contentType: "text/html");
 });
 
 app.MapGet("tool", (HttpContext context) =>
@@ -39,57 +34,40 @@ app.MapPost("home_page", () => Results.Ok());
 app.MapPost("tool/visits", (HttpContext context) =>
 {
     return Visit.GetSummary();
-    /*
-    return new[] {
-        new { page = "hr", total = 10, unique = 5, n = 2 },
-        new { page = "index", total = 15, unique = 10, n = 8 }
-    };*/
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
-app.MapPost("tool/search", ([FromForm] CompanySearch company, HttpContext context) =>
+app.MapPost("tool/search", (HttpContext context) =>
 {
+    CompanySearch company = new CompanySearch();
     var result = company.Save();
     app.Logger.LogInformation("/tool/search save result: {0}", result);
     return Results.Redirect("/tool");
-}).AddEndpointFilter<AuthorizeSuperUserFilter>()
-#if NET8_0_OR_GREATER
-.DisableAntiforgery()
-#endif
-;
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
 app.MapPost("/tool/search/recent", (HttpContext context) =>
 {
     return Results.Ok(CompanySearch.Recent());
-}).AddEndpointFilter<AuthorizeSuperUserFilter>()
-#if NET8_0_OR_GREATER
-.DisableAntiforgery()
-#endif
-;
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
-app.MapPost("login", ([FromForm] LoginRecord login, HttpContext context, IOptions<LoginOptions> options) =>
+app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignInOptions> options) =>
 {
-    LoginOptions loginOptions = options.Value;
-    if (loginOptions.IsValid(login))
+    SignInOptions singInOptions = options.Value;
+    if (singInOptions.IsValid(signIn))
     {
         var expires = DateTimeOffset.UtcNow.AddMonths(6);
         context.Response.Cookies.Delete("auth");
-        context.Response.Cookies.Append("auth", loginOptions.Secret, new CookieOptions
+        context.Response.Cookies.Append("auth", singInOptions.Secret, new CookieOptions
         {
             HttpOnly = true,
             Secure = true,
             Expires = expires
         });
-        context.Response.Redirect("/tool");
+        return Results.Ok();
     }
-    else
-    {
-        context.Response.Redirect("/login");
-    }
-})
-#if NET8_0_OR_GREATER
-.DisableAntiforgery()
-#endif
-;
+    return Results.NotFound();
+});
+
+/*
 
 app.Use(async (context, next) => {
     var session = new Session(context);
@@ -98,6 +76,8 @@ app.Use(async (context, next) => {
     await next.Invoke();
 });
 
+*/
+
 app.Run();
 
-record LoginRecord(string User, string Password);
+record SignInRecord(string User, string Password);

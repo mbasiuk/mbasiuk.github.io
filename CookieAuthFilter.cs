@@ -3,19 +3,19 @@ using Microsoft.Extensions.Options;
 
 class AuthorizeSuperUserFilter : IEndpointFilter
 {
-    readonly LoginOptions loginOptions;
+    readonly SignInOptions signInOptions;
 
-    public AuthorizeSuperUserFilter(IOptions<LoginOptions> options)
+    public AuthorizeSuperUserFilter(IOptions<SignInOptions> options)
     {
-        loginOptions = options.Value;
+        signInOptions = options.Value;
     }
 
     public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
     {
         var auth = context.HttpContext.Request.Cookies["auth"];
-        if (auth != loginOptions.Secret)
+        if (auth != signInOptions.Secret)
         {
-            return Results.Redirect("/login");
+            return Results.Redirect("/signin?returnUrl=" + context.HttpContext.Request.Path);
         }
         return await next(context);
     }
