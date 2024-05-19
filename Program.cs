@@ -67,16 +67,12 @@ app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignIn
     return Results.NotFound();
 });
 
-/*
-
 app.Use(async (context, next) => {
     var session = new Session(context);
     var visit = new Visit(context);
     visit.Track();
     await next.Invoke();
 });
-
-*/
 
 app.Run();
 
