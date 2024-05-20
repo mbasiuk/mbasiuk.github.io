@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.Data.Sqlite;
 
 public class Visit : LiteEntity
@@ -14,9 +15,9 @@ public class Visit : LiteEntity
         Date = DateTimeOffset.UtcNow;
         Page = context.Request.Path;
         SessionId = (string)context.Items[nameof(SessionId)]!;
-        Auth = context.Request.Cookies["auth"]?.ToString() ?? "unset";
-        ConnectionId = context.Connection.Id ?? "unset";
-        Ip = context.Connection.RemoteIpAddress?.ToString() ?? "unset";
+        Auth = context.Request.Cookies["auth"]?.ToString() ?? "-";
+        ConnectionId = context.Connection.Id ?? "-";
+        Ip = context.Connection.RemoteIpAddress?.ToString() ?? "-";
     }
 
     public void Track()
@@ -37,9 +38,11 @@ public class Visit : LiteEntity
     public static List<VisitSummary> GetSummary()
     {
         var sql = @"
-        SELECT p.page, COUNT(1) AS total, COUNT(DISTINCT(p.session_id)) AS [unique], COUNT(DISTINCT(s.created)) as [n]
+        SELECT p.page, COUNT(1) AS total, COUNT(DISTINCT(p.session_id)) AS [unique], COUNT(DISTINCT(s.created)) as [n], p.id
         FROM Visit p
         LEFT JOIN Session s ON p.session_id = s.session_id AND s.created >= @new_date
+        LEFT JOIN IgnoredVisit i ON i.page = p.page
+        WHERE i.id is null
         GROUP BY P.page";
         var Connection = new SqliteConnection(ConnectionString);
         Connection.Open();
@@ -51,10 +54,33 @@ public class Visit : LiteEntity
         var result = new List<VisitSummary>();
         while (reader.Read())
         {
-            result.Add(new VisitSummary(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3)));
+            result.Add(new VisitSummary(reader.GetInt32(4), reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3)));
         }
         return result;
     }
+
+    public static bool IgnoreByPage(Visits visits)
+    {
+        if (visits == null || visits.Values == null || visits.Values.Length == 0)
+        {
+            return false;
+        }
+        var values = visits.Values;
+        var Connection = new SqliteConnection(ConnectionString);
+        Connection.Open();
+        var cmd = Connection.CreateCommand();
+        var paramNames = visits.Values.Select((i, j) => "@id" + j);
+        var sql = $"INSERT INTO IgnoredVisit(page) SELECT page FROM visit v WHERE v.Id IN ({string.Join(", ", paramNames)})";
+        cmd.CommandText = sql;
+        cmd.CommandTimeout = CommandTimeout;
+        for (int i = 0; i < values.Length; i++)
+        {
+            int v = values[i];
+            cmd.Parameters.AddWithValue("id" + i, v);
+        }
+        return cmd.ExecuteNonQuery() > 0;
+    }
 }
 
-public record VisitSummary(string Page, int Total, int Unique, int N);
+public record VisitSummary(int Id, string Page, int Total, int Unique, int N);
+public record Visits(int[] Values);

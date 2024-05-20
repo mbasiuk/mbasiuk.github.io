@@ -69,19 +69,31 @@
 
         #visitbypages {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
         }
 
-        #visitbypages a {
-            flex: 0 0 auto;
-            width: 50%;
+        .visit {
+            display: flex;
         }
 
-        #visitbypages span {
-            flex: 1 0 0;
-            padding: 0 0 0 1em;
+        .visit span {
+            padding: 0 1em;
         }
-        
+
+        .sp {
+            flex: auto;
+        }
+
+        .link {
+            align-self: center;
+            margin: 0 20px 0 0;
+            letter-spacing: 1.6px;
+        }
+
+        .link:hover {
+            color: #0081bc;
+            transition: 300ms;
+        }
     </style>
     <script src="tool.js"></script>
 </head>
@@ -92,7 +104,7 @@
         <a href="https://dsbs.sba.gov">dsdb.sba.gov</a>
     </div>
 
-    <form method="post" action="tool/search" >
+    <form method="post" action="tool/search">
         <h2>
             Add new Search Description:
         </h2>
@@ -117,9 +129,11 @@
     <div id="visits">
         <h2>Total: </h2>
         <div id="visittotal"></div>
+        <button class="link" onclick="return ignoreProbing(event)">Mark as Probing</button>
         <div>By Pages:</div>
         <div id="visitbypages">
         </div>
     </div>
 </body>
+
 </html>
