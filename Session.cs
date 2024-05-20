@@ -1,4 +1,3 @@
-using System.Globalization;
 using Microsoft.Data.Sqlite;
 
 public class Session : LiteEntity
@@ -44,6 +43,11 @@ public class Session : LiteEntity
         context.Items[nameof(SessionId)] = SessionId;
     }
 
+    public void Clear(HttpContext context)
+    {
+        context.Response.Cookies.Delete(Key);
+    }
+
     private void CreateContextParams(SqliteCommand cmd)
     {
         cmd.Parameters.Add(new SqliteParameter("connection_id", ConnectionId));
@@ -57,18 +61,18 @@ public class Session : LiteEntity
 
     private void UpdateFromContext(HttpContext context)
     {
-        ConnectionId = context.Connection.Id ?? "unset";
+        ConnectionId = context.Connection.Id ?? "-";
         AcceptedLang = context.Request.Headers.AcceptLanguage;
-        AcceptedLang ??= "unset";
+        AcceptedLang ??= "-";
         LocalIp = context.Connection.LocalIpAddress?.ToString();
-        LocalIp ??= "unset";
+        LocalIp ??= "-";
         LocalPort = context.Connection.LocalPort;
         LocalPort ??= 0;
         Ip = context.Connection.RemoteIpAddress?.ToString();
-        Ip ??= "unset";
+        Ip ??= "-";
         Port = context.Connection.RemotePort;
         Port ??= 0;
         UserAgent = context.Request.Headers.UserAgent;
-        UserAgent ??= "unset";
+        UserAgent ??= "-";
     }
 }

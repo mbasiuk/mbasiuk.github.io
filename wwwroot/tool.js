@@ -1,6 +1,6 @@
 function renderRecentSearch(data) {
     var json;
-    if (!(xhr.readyState == 4 && xhr.status == 200 && (json = JSON.parse(xhr.responseText)) && json.length)) return;
+    if (!(this.readyState == 4 && this.status == 200 && (json = JSON.parse(this.responseText)) && json.length)) return;
     var frag = document.createDocumentFragment();
     for (var i = 0; i < json.length; i++) {
         var search = json[i];
@@ -18,23 +18,42 @@ function renderRecentSearch(data) {
         frag.appendChild(sp);
         frag.appendChild(cr);
     }
-    document.getElementById("searchbiz").appendChild(frag);
+    var sb = document.getElementById("searchbiz");
+    sb.innerText = "";
+    sb.appendChild(frag);
 }
 
-var xhr = new XMLHttpRequest();
-xhr.open("POST", "/tool/search/recent", true);
-xhr.onreadystatechange = renderRecentSearch;
-xhr.send(null);
+function getSearchRecent() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/tool/search/recent", true);
+    xhr.onreadystatechange = renderRecentSearch;
+    xhr.send(null);
+}
 
-function renderVisits(data) {
+function renderVisits() {
     var json;
-    if (!(xhr1.readyState == 4 && xhr1.status == 200 && (json = JSON.parse(xhr1.responseText)) && json.length)) return;
-    var frag = document.createDocumentFragment();
+    if (!(this.readyState == 4 && this.status == 200 && (json = JSON.parse(this.responseText)) && json.length)) return;
+    var frag1 = document.createDocumentFragment();
     for (var i = 0; i < json.length; i++) {
         var visit = json[i];
+
+        var frag2 = document.createDocumentFragment();
+
+        var c = document.createElement("div");
+        c.className = "visit";
+
+        var ch = document.createElement("input");
+        ch.setAttribute("type", "checkbox");
+        ch.setAttribute("name", "visitid");
+        ch.setAttribute("value", visit.id);
+        ch.className = "visitid";
+
+        var sp = document.createElement("span");
+        sp.classList = "sp";
+
         var page = document.createElement("a");
         page.textContent = visit.page;
-        page.setAttribute("href", "/tool/visits/page/" + escape(visit.page));
+        page.setAttribute("href", "/tool/visits/page?id=" + parseInt(visit.id, 10));
 
         var total = document.createElement("span");
         total.textContent = visit.total;
@@ -45,15 +64,47 @@ function renderVisits(data) {
         var newVisitors = document.createElement("span");
         newVisitors.textContent = visit.n;
 
-        frag.appendChild(page);
-        frag.appendChild(total);
-        frag.appendChild(unique);
-        frag.appendChild(newVisitors);
+        frag2.appendChild(ch);
+        frag2.appendChild(page);
+        frag2.appendChild(sp);
+        frag2.appendChild(total);
+        frag2.appendChild(unique);
+        frag2.appendChild(newVisitors);
+        c.appendChild(frag2);
+        frag1.appendChild(c);
     }
-    document.getElementById("visitbypages").appendChild(frag);
+    var visitbypages = document.getElementById("visitbypages");
+    visitbypages.innerText = "";
+    visitbypages.appendChild(frag1);
 }
 
-var xhr1 = new XMLHttpRequest();
-xhr1.open("POST", "/tool/visits", true);
-xhr1.onreadystatechange = renderVisits;
-xhr1.send(null);
+function getVisits() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/tool/visits", true);
+    xhr.onreadystatechange = renderVisits;
+    xhr.send(null);
+}
+
+function ignoreProbing(event) {
+    var that = event.target;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/tool/visits/ignore", true);
+    var visitsContainer = document.getElementById("visitbypages")
+    var visitIds = visitsContainer.querySelectorAll("input:checked");
+    var x = {
+        values: Array.from(visitIds).map(x => parseInt(x.value))
+    };
+    xhr.onreadystatechange = function () {
+        that.setAttribute("rs", this.readyState);
+        that.setAttribute("s", this.status);
+        if (this.readyState == 4 && this.status < 400) {
+            getVisits();
+        }
+    };
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(x));
+    return false;
+}
+
+getVisits();
+getSearchRecent();

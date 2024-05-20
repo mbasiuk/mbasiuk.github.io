@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +38,10 @@ app.MapPost("tool/visits", (HttpContext context) =>
     return Visit.GetSummary();
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
+app.MapPost("tool/visits/ignore", ([FromBody]Visits visits, HttpContext context) => {
+    Visit.IgnoreByPage(visits);
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
+
 app.MapPost("tool/search", (HttpContext context) =>
 {
     CompanySearch company = new CompanySearch();
@@ -67,13 +73,27 @@ app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignIn
     return Results.NotFound();
 });
 
-app.Use(async (context, next) => {
-    var session = new Session(context);
-    var visit = new Visit(context);
-    visit.Track();
+
+app.Use(async (context, next) =>
+{
+    Session session = null!;
+    try
+    {
+        session = new Session(context);
+        var visit = new Visit(context);
+        visit.Track();
+    }
+    catch (SqliteException e)
+    {
+        if (session != null && e.Message.Contains("FOREIGN KEY constraint failed"))
+        {
+            session.Clear(context);
+        }
+    }
     await next.Invoke();
 });
 
 app.Run();
 
 record SignInRecord(string User, string Password);
+ 
