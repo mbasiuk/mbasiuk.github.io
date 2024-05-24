@@ -38,7 +38,8 @@ app.MapPost("tool/visits", (HttpContext context) =>
     return Visit.GetSummary();
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
-app.MapPost("tool/visits/ignore", ([FromBody]Visits visits, HttpContext context) => {
+app.MapPost("tool/visits/ignore", ([FromBody] Visits visits, HttpContext context) =>
+{
     Visit.IgnoreByPage(visits);
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
@@ -73,6 +74,16 @@ app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignIn
     return Results.NotFound();
 });
 
+app.MapGet("/bas-a", (HttpContext context) =>
+{
+    return Results.File("bas-a.html", contentType: "text/html");
+});
+
+app.MapPost("/bas-a", (HttpContext context) =>
+{
+    var basa = BasA.Create();
+    return Results.Created("bas-a.html", basa);
+});
 
 app.Use(async (context, next) =>
 {
@@ -96,4 +107,3 @@ app.Use(async (context, next) =>
 app.Run();
 
 record SignInRecord(string User, string Password);
- 

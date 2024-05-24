@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAS-A - Independent private party demand confirmation tool.</title>
+
+    <style>
+        html {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            letter-spacing: 1.8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>In Development</h1>
+
+    <h1>
+        BAS-A - Independent private party demand confirmation tool.
+    </h1>
+
+    <div class="description">
+        The purpose of this tool is to provide independent third-party confirmation for party demand such as payment
+        confirmations, contract terminations, demand from insurance companies. and other on-demand activities.
+        Using this tool reduces the likelihood of either party missing or denying the existence of the demand actions.
+    </div>
+
+    <div class="question">
+        What will happened if BAS-A will fail to work? Cases like data loss, going out of bussiness, or BAS-A will
+        sold to other party.
+    </div>
+
+    <div class="question">
+        The agreement which are refering to BAS-A shold be written in a way,
+        that missing this confirmation will not harm either party interests. Avoid BAS-A agreement to be
+        required or only options for handle demand action.
+        but as confirmation from BAS-A independent party for this action to be called.
+    </div>
+
+    <div class="answer">
+        Example of page <a href="/wwwroot/bas-a-example.html">Example of the page</a>
+    </div>
+
+    <div class="question">
+        What information BAS-A page has?
+    </div>
+
+    <div class="answer">
+        Contact information of Party A, Contirmation Code,
+    </div>
+
+    <div class="question">
+        Can BAS1 page be modified?
+    </div>
+
+    <div class="answer">
+        BAS1 confirmation pages are permalinks, and they are readonly.
+    </div>
+
+    <div>
+        <form>
+            <label>
+                View Link:
+                <input name="readid" id="readid" type="text" autocomplete="off" />
+            </label>
+
+            <label>
+                Edit Link:
+                <input id="id" name="id" type="password" autocomplete="off" />
+            </label>
+
+            <label>
+                Created:
+                <input id="created" name="created" type="text" readonly>
+            </label>
+
+            <label>
+                Expired:
+                <input id="expire" name="expire" type="text" readonly>
+            </label>
+
+            <label>
+                Demanded Datetime:
+                <input id="demanded" name="demanded" type="text" readonly>
+            </label>
+
+            <input type="submit" value="submit" onclick="return reload();">
+
+        </form>
+    </div>
+</body>
+
+<script>
+    function reload() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/bas-a/", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = reloadRenderer;
+        xhr.send();
+        return false;
+    }
+
+    function reloadRenderer() {
+        if (!this.readyState == 4) {
+            return;
+        }
+
+        if (!this.status == 201) {
+            return;
+        }
+
+        var data = JSON.parse(this.responseText);
+        document.getElementById("id").value = data.id;
+        document.getElementById("readid").value = data.readId;
+        document.getElementById("created").value = new Date(data.created);
+        document.getElementById("expire").value  = new Date( data.expire);
+        document.getElementById("demanded").value = new Date(data.demanded);
+    }
+
+</script>
+
+</html>
