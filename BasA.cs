@@ -41,7 +41,7 @@ public class BasA : LiteEntity
         return a;
     }
 
-    public BasA FindByReadId(Guid readId)
+    public static BasA FindByReadId(Guid readId)
     {
         using var Connection = new SqliteConnection(ConnectionString);
         using var selectCmd = Connection.CreateCommand();
@@ -67,7 +67,7 @@ public class BasA : LiteEntity
         return a;
     }
 
-    public BasA FindById(Guid id)
+    public static BasA FindById(Guid id)
     {
         using var Connection = new SqliteConnection(ConnectionString);
         using var selectCmd = Connection.CreateCommand();

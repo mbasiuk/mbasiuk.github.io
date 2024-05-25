@@ -74,15 +74,34 @@ app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignIn
     return Results.NotFound();
 });
 
-app.MapGet("/bas-a", (HttpContext context) =>
+app.MapGet("/bas-a-create", (HttpContext context) =>
 {
-    return Results.File("bas-a.html", contentType: "text/html");
+    return Results.File("bas-a-create.html", contentType: "text/html");
 });
 
-app.MapPost("/bas-a", (HttpContext context) =>
+app.MapPost("/bas-a-create", (HttpContext context) =>
 {
     var basa = BasA.Create();
     return Results.Created("bas-a.html", basa);
+});
+
+
+app.MapPost("/bas-a/ro", (BasA input, HttpContext context) =>
+{
+    if (!input.ReadId.HasValue)
+    {
+        return Results.BadRequest();
+    }
+    var output = BasA.FindByReadId(input.ReadId.Value);
+    if (output == null)
+    {
+        return Results.NotFound();
+    }
+    if(output.Id != null)
+    {
+        return Results.StatusCode(500);
+    }
+    return Results.Ok(output);
 });
 
 app.Use(async (context, next) =>
