@@ -13,10 +13,46 @@
             letter-spacing: 1.4px;
         }
 
+        input[type=text] {
+            font-family: inherit;
+            font-size: inherit;
+            letter-spacing: inherit;
+            background-color: #dbdadb;
+            border: none;
+            width: 360px;
+            padding: 0;
+        }
+
         html,
         body {
             margin: 0;
-            padding: 2em;
+            padding: 0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+            letter-spacing: inherit;
+        }
+
+        @media print {
+            body {
+                width: 8.5in;
+                height: 11in;
+                margin: 0;
+                padding: 1in;
+            }
+        }
+
+        @media(min-width: 500px) {
+            body {
+                padding: 2em;
+            }
         }
 
         .description {
@@ -24,28 +60,39 @@
         }
 
         table {
-            border: 1px solid black;
+            width: 600px;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
             border-collapse: collapse;
-            padding: 1em;
-            margin: 1em 0 1em 0;
-        }
-
-        #t1 {
-            width: 550px;
+            margin: 4em 0 8em 0;
         }
 
         .col-1 {
-            width: 50px;
+            width: 32px;
             text-align: center;
             font-weight: bold;
+        }
+
+        .col-2 {
+            width: 120px;
+        }
+
+        #t2 .col-2 {
+            width: 350px;
         }
 
         .section {
             border-bottom: 1px solid black;
         }
 
+        th {
+            padding: 8px;
+            text-align: left;
+        }
+
         td {
             vertical-align: top;
+            padding: 4px 0;
         }
 
         .answer {
@@ -60,12 +107,28 @@
             display: inline-block;
             font-size: 16px;
             line-height: 1em;
-            padding: 0.8em 1.6em;
+            padding: 0.3em 1em;
             text-decoration: none;
-            border: 1px solid #23a5e0;
-            color: rgb(86, 86, 86);
+            border: 1px solid black;
+            background: #ffffff;
+            color: rgb(20, 20, 20);
             margin: 0 0.2em;
             border-radius: 22px;
+        }
+
+        .rn,
+        .rf {
+            white-space: nowrap;
+        }
+
+        .form-name {
+            border-right: 1px solid black;
+            padding: 0 6px 0 0;
+        }
+
+        .form-porpuse {
+            font-weight: normal;
+            font-size: smaller;
         }
     </style>
 
@@ -73,201 +136,485 @@
 
 <body>
 
-    <h2>
-        BAS-A - Independent private party demand confirmation tool.
-    </h2>
+    <div class="container">
 
-    <div class="description">
-        The purpose of this tool is to provide independent third-party confirmation for party demand such as payment
-        confirmations, contract terminations, demand from insurance companies and other on-demand activities.
-        Using this tool reduces the likelihood of either party missing or denying the existence of the demand actions.
-    </div>
+        <h2>
+            BAS-A - Independent private party demand confirmation tool.
+        </h2>
 
-    <button onclick="return demonew();">Demo New</button>
-    <button onclick="return demodemand()">Demo Demand</button>
-    <button onclick="return demodemanded()">Demo Demanded</button>
+        <div class="description">
+            The purpose of this tool is to provide independent private party confirmation for a demand such as payment
+            confirmations, contract terminations, demand for insurance companies and other on-demand activities.
+            Using this tool reduces the likelihood of either party missing or denying the existence of the demand
+            actions.
+        </div>
 
-    <button onclick="return reload();">Create</button>
+        <table id="t2">
+            <tr class="section">
+                <th colspan="3">
+                    <span class="form-name">eForm BAS-AV</span>
+                    <span class="form-porpuse">Check On Demand Status</span>
+                </th>
+            </tr>
+            <tr class="section">
+                <td class="col-1">
+                    1
+                </td>
+                <td>
+                    Enter <span class="rn">1 Read No</span> from <span class="rf">eForm BAS-A</span>
+                </td>
+                <td>
+                    <input name="rid" id="rid" type="text">
+                </td>
+            </tr>
+            <tr class="section">
+                <td colspan="3">
+                    <button onclick="return checkReadOnly();">Check</button>
+                    <button onclick="return checkReset();">Reset</button>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">Response</th>
+            </tr>
+            <tr>
+                <td class="col-1">2</td>
+                <td>Is Demanded</td>
+                <td>
+                    <span id="checkIsDemanded"></span>
+                </td>
+            </tr>
+            <tr class="section">
+                <td class="col-1">3</td>
+                <td>Demanded Date</td>
+                <td>
+                    <span id="checkDemandedDate"></span>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="4">Response Verification</th>
+            </tr>
+            <tr>
+                <td class="col-1">4</td>
+                <td>Status</td>
+                <td>
+                    <span id="checkStatus"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">5</td>
+                <td>Demanded Timestamp</td>
+                <td>
+                    <span id="checkDemanded"></span>
+                </td>
+            </tr>
+            <tr class="section">
+                <td class="col-1">6</td>
+                <td>Signature</td>
+                <td>
+                    <span id="checkSignature"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">7</td>
+                <td>Date</td>
+                <td>
+                    <span id="checkDate"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">8</td>
+                <td>Timezone</td>
+                <td>
+                    <span id="checkTimezone"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">9</td>
+                <td>Transaction No.</td>
+                <td>
+                    <span id="checkTransactionId"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">10</td>
+                <td>Timestamp</td>
+                <td>
+                    <span id="checkTimestamp"></span>
+                </td>
+            </tr>
 
-    <table id="t1">
-        <colgroup>
-            <col class="col-1">
-            <col class="col-2">
-            <col class="col-3">
-        </colgroup>
-        <tr>
-            <th colspan="2">eForm BAS-A</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>
-                Read No.
-            </td>
-            <td>
-                <a href="" target="_blank" id="readId"></a>
-            </td>
-        </tr>
-        <tr class="section">
-            <td>
-                2
-            </td>
-            <td>
-                Edit No.
-            </td>
-            <td>
-                <a id="id" target="_blank" name="id"></a>
-            </td>
-        </tr>
-        <tr class="section">
-            <td>3</td>
-            <td>Is Demanded</td>
-            <td>
-                <span id="isDemanded"></span>
-            </td>
-        </tr>
+        </table>
 
-        <tr>
-            <td>5</td>
-            <td>Demanded</td>
-            <td>
-                <span id="demanded"></span>
-            </td>
-        </tr>
+        <table>
+            <tr class="section">
+                <th colspan="3">
+                    <span class="form-name">eForm BAS-AD</span>
+                    <span class="form-porpuse">Demand</span>
+                </th>
+            </tr>
+            <tr class="section">
+                <td class="col-1">
+                    1
+                </td>
+                <td>
+                    Enter <span class="rn">2 Edit No</span> from <span class="rf">eForm BAS-A</span>
+                </td>
+                <td>
+                    <input name="did" id="did" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button onclick="return demand();">Demand</button>
+                </td>
+            </tr>
+        </table>
 
-        <tr>
-            <td>3</td>
-            <td>Created</td>
-            <td>
-                <span id="created"></span>
-            </td>
-        </tr>
+        <form action="/bas-a-create" method="post" onsubmit="return reload();">
+            <table>
+                <tr class="section">
+                    <th colspan="3">
+                        <span class="form-name">eForm BAS-AN</span>
+                        <span class="form-porpuse">New</span>
+                    </th>
+                </tr>
+                <tr>
+                    <td class="col-1">
+                        1
+                    </td>
+                    <td>
+                        Service Time . . . . . . . .
+                    </td>
+                    <td>
+                        <label>
+                            <input name="duration" value="1months" type="radio">
+                            1 month
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <label>
+                            <input name="duration" value="6months" checked type="radio">
+                            6 month
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <label>
+                            <input name="duration" value="" type="radio">
+                            other
+                        </label>
+                    </td>
+                </tr>
+                <tr class="section">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <label>
+                            <input id="durationCustom" name="durationCustom" value="" type="text">
+                        </label>
+                    </td>
+                </tr>
 
-        <tr>
-            <td>6</td>
-            <td>Expire</td>
-            <td>
-                <span id="expire"></span>
-            </td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Loaded</td>
-            <td><span id="loaded"></span></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Timezone</td>
-            <td> <span id="timezoneName"></span> </td>
-        </tr>
-    </table>
+                <tr>
+                    <td>2</td>
+                    <td>License key</td>
+                    <td>
+                        <label>
+                            <input id="licenseKey" name="linenseKey" value="" type="text">
+                        </label>
+                    </td>
+                </tr>
 
-    <table>
-        <tr>
-            <th colspan="3">Form BAS-A Description</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Read No.</td>
-            <td>Identifier for the specific BAS-A readonly form. Parties may share it for reference in agreements,
-                negotiations, and disputes. Generated by BAS-A tool. Unique, read only.</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Edit No.</td>
-            <td>Identifier for specific BAS-A editable form. Party having the identifier can call demand action.
-                Generated by BAS-A tool</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Created</td>
-            <td>Date and time when the form was created, using the current viewer's timezone. Example: 5/24/2024,
-                10:26:41 PM</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Is Demanded</td>
-            <td>Shows "no" when action was not demanded, and "yes" when it was already demanded. Once a demand action is
-                called, it is irreversible.
-            </td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Demanded</td>
-            <td>Show date when demand action was triggered. Example: "-". Example: 5/24/2024, 10:26:41 PM </td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Expire</td>
-            <td>Example: 5/24/2024, 10:26:41 PM. Once expired, the form is unaligible to display or load, and don't
-                descrease probability of other party
-                ignoring or denying existence of the demand action. </td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Loaded</td>
-            <td>Date and Time when the form was loaded. Example: 5/24/2024, 10:26:41 PM</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Timezone</td>
-            <td>
-                Current viewer's timezone. Used to display field 3, 5, 6 and 7.
-            </td>
-        </tr>
-    </table>
+                <tr>
+                    <td></td>
+                    <td>or</td>
+                    <td></td>
+                </tr>
 
-    <div class="question">
-        <span class="mark">Q:</span>
-        How to use this tool?
-    </div>
+                <tr class="section">
+                    <td></td>
+                    <td>leave the message with contact information, budget, prefferable method of payment, etc. </td>
+                    <td>
+                        <label>
+                            <textarea id="message" name="message" cols="37" rows="5"></textarea>
+                        </label>
+                    </td>
+                </tr>
 
-    <div class="answer">
-        <span class="mark">A:</span>
-        Tool owner is expecting that there will be 2 patries (Party A and Party B)
-        who will use reference for the form BAS-A using field 1 No in their agreement, negotiations and disputes, and
-        party B should take
-        aproptiate action agreed by parties, once party A will demand for it. Party A will receive confirmation for
-        demand
-        by updating form BAS-A using field 2 Edit No, and making a references to the date of this action using form
-        BAS-A field 5 - demanded.
-        Form field 4 Expire is indicating a date when it's expired, and this record will not be served by the tool.
-        The tool may be utilized during legal disputes, including court cases, and the parties agree not to assert its
-        use as a violation of privacy.
-        Any such assertion shall be deemed unenforceable.
-    </div>
+                <tr>
+                    <td colspan="3">
+                        <button type="submit">Submit</input>
+                    </td>
+                </tr>
+            </table>
+        </form>
 
-    <div class="question">
-        <span class="mark">Q:</span>
-        who should create the form?
-    </div>
+        <table id="t1">
+            <tr class="section">
+                <th colspan="3">
+                    <span class="form-name">eForm BAS-A</span>
+                    <span class="form-porpuse">Details</span>
+                </th>
+            </tr>
+            <tr>
+                <td class="col-1">1</td>
+                <td class="col-2">
+                    Read No.
+                </td>
+                <td>
+                    <span id="readId"></span>
+                </td>
+            </tr>
+            <tr class="section">
+                <td class="col-1">
+                    2
+                </td>
+                <td class="col-2">
+                    Edit No.
+                </td>
+                <td>
+                    <span id="id"></span>
+                </td>
+            </tr>
+            <tr class="section">
+                <td class="col-1">3</td>
+                <td class="col-2">Is Demanded</td>
+                <td>
+                    <span id="isDemanded"></span>
+                </td>
+            </tr>
 
-    <div class="answer">
-        <span class="mark">A:</span>
-        party who might to call for on-demand action creating BAS-A form.
-    </div>
+            <tr>
+                <td class="col-1">4</td>
+                <td class="col-2">Demanded</td>
+                <td>
+                    <span id="demanded"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">5</td>
+                <td class="col-2">Created</td>
+                <td>
+                    <span id="created"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">6</td>
+                <td class="col-2">Expire</td>
+                <td>
+                    <span id="expire"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">7</td>
+                <td class="col-2">Loaded</td>
+                <td><span id="loaded"></span></td>
+            </tr>
+            <tr>
+                <td class="col-1">8</td>
+                <td class="col-2">Timezone</td>
+                <td>
+                    <span id="timezoneName"></span>
+                </td>
+            </tr>
+        </table>
 
-    <div class="question">
-        <span class="mark">Q:</span>
-        Who can demand an action?
-    </div>
+        <table>
+            <tr class="section">
+                <th colspan="3">Form BAS-A Description</th>
+            </tr>
+            <tr>
+                <td class="col-1">1</td>
+                <td class="col-2">Read No.</td>
+                <td>Identifier for the specific BAS-A readonly form. Parties may share it for reference in agreements,
+                    negotiations, and disputes. Generated by BAS-A tool. Unique, read only.</td>
+            </tr>
+            <tr class="section">
+                <td class="col-1">2</td>
+                <td class="col-2">Edit No.</td>
+                <td>Identifier for specific BAS-A editable form. Party having the identifier can call demand action.
+                    Can be shared after demand action was called.
+                    Generated by BAS-A tool</td>
+            </tr>
+            <tr class="section">
+                <td class="col-1">3</td>
+                <td class="col-2">Is Demanded</td>
+                <td>
+                    Shows "no" when action was not demanded, and "yes" when it was demanded. Demand action is
+                    irreversible.
+                    Can be changed only by party with 2 Edit No.
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">3</td>
+                <td class="col-2">Created</td>
+                <td>Date and time when the form was created, using the current viewer's timezone. Example: 5/24/2024,
+                    10:26:41 PM</td>
+            </tr>
+            <tr>
+                <td class="col-1">5</td>
+                <td class="col-2">Demanded</td>
+                <td>Show date when demand action was triggered. Example: "-". Example: 5/24/2024, 10:26:41 PM </td>
+            </tr>
+            <tr>
+                <td class="col-1">6</td>
+                <td class="col-2">Expire</td>
+                <td>Example: 5/24/2024, 10:26:41 PM. Expire is reference for the tool usage terms between parties and
+                    tool
+                    owner. After record expire it will be archived or removed from the tool.
+                </td>
+            </tr>
+            <tr>
+                <td class="col-1">7</td>
+                <td class="col-2">Loaded</td>
+                <td>Date and Time when the form was loaded. Example: 5/24/2024, 10:26:41 PM</td>
+            </tr>
+            <tr>
+                <td class="col-1">8</td>
+                <td class="col-2">Timezone</td>
+                <td>
+                    Current viewer's timezone. Used to display field 3, 5, 6 and 7.
+                </td>
+            </tr>
+        </table>
 
-    <div class="answer">
-        <span class="mark">A:</span>
-        field 3. Edit No. used to demand an action
-    </div>
+        <div class="question">
+            <span class="mark">Q:</span>
+            When to use the tool?
+        </div>
 
-    <div class="question">
-        <span class="mark">Q:</span>
-        What will happened if BAS-A will fail to work? Cases like data loss, going out of bussiness, or BAS-A will
-        sold to other party.
-    </div>
+        <div class="answer">
+            <span class="mark">A:</span>
+            This tool is used when two parties require a single point of reference for on-demand actions and their
+            corresponding dates.
+        </div>
 
-    <div class="answer">
-        <span class="mark">A:</span>
-        The agreement which are refering to BAS-A shold be written in a way,
-        that missing this confirmation will not harm either party interests. Avoid BAS-A agreement to be
-        required or only options for handle demand action.
-        but as confirmation from BAS-A independent party for this action to be called.
+        <div class="question">
+            <span class="mark">Q:</span>
+            Is the demand action reversable?
+        </div>
+
+        <div class="answer">
+            <span class="mark">
+                A:
+            </span>
+            The action is irreversible. Once the demand action is called, it cannot be undone. The tooling to reverse
+            this action does not exist and will never be created. The tool owner does not accept, and will never accept
+            in the future, any support requests to reverse the demand action.
+        </div>
+
+        <div class="question">
+            <span class="mark">Q:</span>
+            Can the date of the demand action be changed?
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            After the demand action is called, the tool records the date of the action, and this date cannot be changed.
+            The tooling to modify this date does not exist and will never be created. The tool owner does not accept,
+            and will never accept in the future,
+            any support requests to change the date of the demand action manually.
+        </div>
+
+        <div class="question">
+            <span class="mark">Q:</span>
+            How can we have confirmation for demand action?
+        </div>
+
+        <div class="answer">
+            <span class="mark">A</span>
+            I recommend using the second BAS-A for confirming the demand action.
+        </div>
+
+        <div class="question">
+            <span class="mark">Q:</span>
+            How many BAS-A instances can we have for agreement?
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            One instance for one demand action. Typical agreement have from one to 10 instances.
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            party who might to call for on-demand action creating BAS-A form.
+        </div>
+
+        <div class="question">
+            <span class="mark">Q:</span>
+            Who can demand an action?
+        </div>
+
+        <!--
+
+        <div class="question">
+            <span class="mark">Q:</span>
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            
+        </div>
+-->
+        <div class="question">
+            <span class="mark">Q:</span>
+            What is the difference between BAS-A tool and similar tooling.
+        </div>
+
+        
+        <div class="answer">
+            <span class="mark">A:</span>
+            BAS-A have better reputation and provide greater flexibility.
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            field 3. Edit No. used to demand an action
+        </div>
+
+        <div class="question">
+            <span class="mark">Q:</span>
+            What will happened if BAS-A will fail to work? Cases like data loss, going out of bussiness, or BAS-A will
+            sold to other party.
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            The agreement which are refering to BAS-A shold be written in a way,
+            that missing this confirmation will not harm either party interests. Avoid BAS-A agreement to be
+            required or only options for handle demand action.
+            but as confirmation from BAS-A independent party for this action to be called.
+        </div>
+
+        <div class="question">
+            <span class="mark">Q:</span>
+            Can I use tool without a license key?
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            You can use a tool without license key for a learning purpose only.
+            The tool then provided "as is" without any warranties of any kind, either express or implied.
+        </div>
+
+        <div class="question">
+            <span class="mark">Q:</span>
+            How can I get a license key?
+        </div>
+
+        <div class="answer">
+            <span class="mark">A:</span>
+            Contact via phone +1(651)-417-6127
+            or email <a href="mailto:mykhailo.basiuk+basa@gmail.com">mykhailo.basiuk+basa@gmail.com</a>
+        </div>
     </div>
 </body>
 
@@ -277,29 +624,106 @@
         xhr.open("POST", "/bas-a-create/", true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = reloadRenderer;
-        xhr.send();
+        xhr.send(JSON.stringify({
+            duration: document.querySelectorAll("[name=duration]:checked")[0].value,
+            durationCustom: document.getElementById("durationCustom").value,
+            lineseKey: document.getElementById("licenseKey").value,
+            message: document.getElementById("message").value
+        }));
         return false;
     }
 
-    function demonew() {
-        var data = {
+    function getTimezone() {
+        return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
+
+    function checkReadOnly() {
+        checkResetOutputs();
+        var tid = crypto.randomUUID();
+        document.getElementById("checkTransactionId").textContent = tid;
+        document.getElementById("checkTimezone").textContent = getTimezone();
+        var date = new Date();
+        document.getElementById("checkDate").textContent = date.toLocaleString();
+        var timestamp = Math.round(date.valueOf() / 1000);
+        document.getElementById("checkTimestamp").textContent = timestamp;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/bas-a/ro", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("tid", tid);
+        xhr.onreadystatechange = renderCheck;
+        xhr.send(JSON.stringify({
+            readId: document.getElementById("rid").value
+        }));
+        return false;
+    }
+
+    function checkReset() {
+        document.getElementById("rid").value = null;
+        checkResetOutputs();
+    }
+
+    function checkResetOutputs() {
+        document.getElementById("checkIsDemanded").textContent = "";
+        document.getElementById("checkSignature").textContent = "";
+        document.getElementById("checkDemanded").textContent = "";
+        document.getElementById("checkDate").textContent = "";
+        document.getElementById("checkTimestamp").textContent = "";
+        document.getElementById("checkTimezone").textContent = "";
+        document.getElementById("checkTransactionId").textContent = "";
+        document.getElementById("checkStatus").textContent = "";
+    }
+
+    function renderCheck(data) {
+        var status = "";
+        switch (this.readyState) {
+            case 1:
+                status = "LOADING";
+                break;
+            case 2:
+                switch (this.status) {
+                    case 200:
+                        status = "BAS-AV-OK";
+                        break;
+                    case 400:
+                        status = "BAS-AV-WRONG-REQUEST";
+                        break;
+                    case 404:
+                        status = "BAS-AV-NOT-FOUND";
+                        break;
+                    case 500:
+                        status = "BAS-AV-ERROR";
+                }
+                document.getElementById("checkStatus").textContent = status;
+                break;
+            case 4:
+                var data = JSON.parse(this.responseText);
+                document.getElementById("checkIsDemanded").textContent = data.demanded ? "Yes" : "No";
+                document.getElementById("checkSignature").textContent = data.signature;
+                document.getElementById("checkDemanded").textContent = data.demandedTimestamp;
+                break;
+        }
+    }
+
+    function demand() {
+        var tid = crypto.randomUUID();
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/bas-a/", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("tid", tid);
+        xhr.onreadystatechange = reloadRenderer;
+        xhr.send(JSON.stringify({
+            Id: document.getElementById("did").value
+        }));
+    }
+
+    function demodemand() {
+
+        data = {
             id: crypto.randomUUID(),
             readId: crypto.randomUUID(),
             created: new Date().toISOString(),
-            expire: new Date(new Date().valueOf() + (60 * 60 * 24 * 30 * 1000 * 11))
-        };
-
-        render(data);
-    }
-
-
-
-    function demodemand() {
-        var data = {
-            id: '4e5e0a8b-f044-4298-9dae-daa9f61c5e83'.replace('daa9f61c5e83', Math.round(Math.random() * 1e12)),
-            readId: '4f59adab-2a34-4771-9c19-db4647780922'.replace('db4647780922', Math.round(Math.random() * 1e12)),
-            created: new Date().toISOString(),
-            expire: new Date(new Date().valueOf() + (60 * 60 * 24 * 30 * 1000 * 11))
+            expire: new Date(new Date().valueOf() + (60 * 60 * 24 * 30 * 1000 * 1)).toISOString(),
+            demanded: new Date().toISOString()
         };
 
         render(data);
@@ -320,7 +744,6 @@
 
     function render(data) {
         document.getElementById("id").innerText = data.id || "";
-        document.getElementById("id").setAttribute("href", (data.id ? ("/bas-a/e/" + data.id) : "#"));
         document.getElementById("isDemanded").innerText = data.demanded ? "yes" : "no";
         document.getElementById("readId").innerText = data.readId;
         document.getElementById("created").innerText = new Date(data.created).toLocaleString();
@@ -328,6 +751,10 @@
         document.getElementById("demanded").innerText = data.demanded ? new Date(data.demanded).toLocaleString() : '-';
         document.getElementById("loaded").innerText = new Date().toLocaleString();
         document.getElementById("timezoneName").innerText = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        document.location.hash = 't1';
+        setTimeout(function () {
+            history.replaceState(null, null, ' ');
+        }, 100);
     }
 
 </script>

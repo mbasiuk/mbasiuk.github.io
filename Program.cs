@@ -79,9 +79,9 @@ app.MapGet("/bas-a-create", (HttpContext context) =>
     return Results.File("bas-a-create.html", contentType: "text/html");
 });
 
-app.MapPost("/bas-a-create", (HttpContext context) =>
+app.MapPost("/bas-a-create", (BasA input, HttpContext context) =>
 {
-    var basa = BasA.Create();
+    var basa = BasA.Create(input);
     return Results.Created("bas-a.html", basa);
 });
 
@@ -97,11 +97,38 @@ app.MapPost("/bas-a/ro", (BasA input, HttpContext context) =>
     {
         return Results.NotFound();
     }
-    if(output.Id != null)
+    if (output.Id != null)
     {
         return Results.StatusCode(500);
     }
+    output.SignReadId();
     return Results.Ok(output);
+});
+
+app.MapPost("/bas-a/", (BasA input, HttpContext context) =>
+{
+    if (!input.Id.HasValue)
+    {
+        return Results.BadRequest();
+    }
+    var output = BasA.FindById(input.Id.Value);
+    if (output == null)
+    {
+        return Results.NotFound();
+    }
+
+    if (output.Demanded != null)
+    {
+        return Results.Conflict();
+    }
+
+    if (BasA.Demand(output.Id!.Value))
+    {
+        return Results.Ok(output);
+    }
+
+    return Results.BadRequest(input.CannotDemandReason());
+
 });
 
 app.Use(async (context, next) =>
