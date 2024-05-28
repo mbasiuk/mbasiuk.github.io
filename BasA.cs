@@ -1,4 +1,5 @@
 using Microsoft.Data.Sqlite;
+using SQLitePCL;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -19,12 +20,25 @@ public class BasA : LiteEntity
 
     public static BasA Create(BasA b)
     {
-        var a = new BasA()
+        var a = new BasA
         {
             Id = Guid.NewGuid(),
             ReadId = Guid.NewGuid(),
             Expire = DateTimeOffset.UtcNow.AddMonths(1),
+            LicenseKey = b.LicenseKey,
+            Message = b.Message,
+            DurationCustom = b.DurationCustom
         };
+
+        if (a.Message != null)
+        {
+            a.Message = a.Message.Replace("<", "o[").Replace(">", "]o");
+        }
+
+        if (a.DurationCustom != null)
+        {
+            a.DurationCustom = a.DurationCustom.Replace("<", "o[").Replace(">", "]o");
+        }
 
         if (b.Duration == "6months")
         {
@@ -35,10 +49,37 @@ public class BasA : LiteEntity
         Connection.Open();
         using var cmd = Connection.CreateCommand();
         cmd.CommandTimeout = CommandTimeout;
-        cmd.CommandText = "INSERT INTO basa (id, rid, expire) VALUES(@id, @rid, @expire)";
+        cmd.CommandText = "INSERT INTO basa (id, rid, expire, license, message, expireWanted) VALUES(@id, @rid, @expire, @license, @message, @expireWanted)";
         cmd.Parameters.Add(new SqliteParameter("id", a.Id));
         cmd.Parameters.Add(new SqliteParameter("rid", a.ReadId));
         cmd.Parameters.AddWithValue("expire", (int)a.Expire.Value.ToUnixTimeSeconds());
+        if (a.LicenseKey.HasValue)
+        {
+            cmd.Parameters.AddWithValue("license", a.LicenseKey.Value);
+        }
+        else
+        {
+            cmd.Parameters.AddWithValue("license", DBNull.Value);
+        }
+
+        if (a.Message == null)
+        {
+            cmd.Parameters.AddWithValue("message", DBNull.Value);
+        }
+        else
+        {
+            cmd.Parameters.AddWithValue("message", a.Message);
+        }
+
+        if (a.DurationCustom == null)
+        {
+            cmd.Parameters.AddWithValue("expireWanted", DBNull.Value);
+        }
+        else
+        {
+            cmd.Parameters.AddWithValue("expireWanted", a.DurationCustom);
+        }
+
         var result = cmd.ExecuteNonQuery();
         using var selectCmd = Connection.CreateCommand();
         selectCmd.CommandTimeout = CommandTimeout;
