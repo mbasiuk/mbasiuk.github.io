@@ -120,7 +120,8 @@ public class BasA : LiteEntity
         };
         if (!reader.IsDBNull(1))
         {
-            a.Demanded = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt32(1));
+            a.DemandedTimestamp = reader.GetInt32(1);
+            a.Demanded = DateTimeOffset.FromUnixTimeSeconds(a.DemandedTimestamp.Value);
         }
         return a;
     }
