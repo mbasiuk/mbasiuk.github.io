@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAS-A</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    function findReadOnly(rid) {
+        var xhr = new XMLHttpRequest();
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.open("POST", "/bas-a/", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = signInCallback;
+        xhr.send(JSON.stringify({
+            rid: rid
+        }));
+    }
+</script>
+
+</html>

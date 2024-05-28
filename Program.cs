@@ -38,7 +38,8 @@ app.MapPost("tool/visits", (HttpContext context) =>
     return Visit.GetSummary();
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
-app.MapPost("tool/visits/ignore", ([FromBody]Visits visits, HttpContext context) => {
+app.MapPost("tool/visits/ignore", ([FromBody] Visits visits, HttpContext context) =>
+{
     Visit.IgnoreByPage(visits);
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
@@ -73,6 +74,62 @@ app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignIn
     return Results.NotFound();
 });
 
+app.MapGet("/bas-a-create", (HttpContext context) =>
+{
+    return Results.File("bas-a-create.html", contentType: "text/html");
+});
+
+app.MapPost("/bas-a-create", (BasA input, HttpContext context) =>
+{
+    var basa = BasA.Create(input);
+    return Results.Created("bas-a.html", basa);
+});
+
+
+app.MapPost("/bas-a/ro", (BasA input, HttpContext context) =>
+{
+    if (!input.ReadId.HasValue)
+    {
+        return Results.BadRequest();
+    }
+    var output = BasA.FindByReadId(input.ReadId.Value);
+    if (output == null)
+    {
+        return Results.NotFound();
+    }
+    if (output.Id != null)
+    {
+        return Results.StatusCode(500);
+    }
+    output.SignReadId();
+    return Results.Ok(output);
+});
+
+app.MapPost("/bas-a/", (BasA input, HttpContext context) =>
+{
+    if (!input.Id.HasValue)
+    {
+        return Results.BadRequest();
+    }
+    var output = BasA.FindById(input.Id.Value);
+    if (output == null)
+    {
+        return Results.NotFound();
+    }
+
+    if (output.Demanded != null)
+    {
+        return Results.Conflict();
+    }
+
+    if (BasA.Demand(output.Id!.Value))
+    {
+        return Results.Ok(output);
+    }
+
+    return Results.BadRequest(input.CannotDemandReason());
+
+});
 
 app.Use(async (context, next) =>
 {
@@ -96,4 +153,3 @@ app.Use(async (context, next) =>
 app.Run();
 
 record SignInRecord(string User, string Password);
- 
