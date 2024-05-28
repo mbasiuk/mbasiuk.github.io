@@ -130,122 +130,128 @@
             font-weight: normal;
             font-size: smaller;
         }
+
+        @media print {
+            .page-break {
+                page-break-after: always;
+            }
+        }
     </style>
 
 </head>
 
 <body>
-
     <div class="container">
-
         <h2>
             BAS-A - Independent private party demand confirmation tool.
         </h2>
 
-        <div class="description">
+        <div class="description page-break">
             The purpose of this tool is to provide independent private party confirmation for a demand such as payment
             confirmations, contract terminations, demand for insurance companies and other on-demand activities.
             Using this tool reduces the likelihood of either party missing or denying the existence of the demand
             actions.
         </div>
 
-        <table id="t2">
-            <tr class="section">
-                <th colspan="3">
-                    <span class="form-name">eForm BAS-AV</span>
-                    <span class="form-porpuse">Check On Demand Status</span>
-                </th>
-            </tr>
-            <tr class="section">
-                <td class="col-1">
-                    1
-                </td>
-                <td>
-                    Enter <span class="rn">1 Read No</span> from <span class="rf">eForm BAS-A</span>
-                </td>
-                <td>
-                    <input name="rid" id="rid" type="text">
-                </td>
-            </tr>
-            <tr class="section">
-                <td colspan="3">
-                    <button onclick="return checkReadOnly();">Check</button>
-                    <button onclick="return checkReset();">Reset</button>
-                </td>
-            </tr>
-            <tr>
-                <th colspan="3">Response</th>
-            </tr>
-            <tr>
-                <td class="col-1">2</td>
-                <td>Is Demanded</td>
-                <td>
-                    <span id="checkIsDemanded"></span>
-                </td>
-            </tr>
-            <tr class="section">
-                <td class="col-1">3</td>
-                <td>Demanded Date</td>
-                <td>
-                    <span id="checkDemandedDate"></span>
-                </td>
-            </tr>
-            <tr>
-                <th colspan="4">Response Verification</th>
-            </tr>
-            <tr>
-                <td class="col-1">4</td>
-                <td>Status</td>
-                <td>
-                    <span id="checkStatus"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-1">5</td>
-                <td>Demanded Timestamp</td>
-                <td>
-                    <span id="checkDemanded"></span>
-                </td>
-            </tr>
-            <tr class="section">
-                <td class="col-1">6</td>
-                <td>Signature</td>
-                <td>
-                    <span id="checkSignature"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-1">7</td>
-                <td>Date</td>
-                <td>
-                    <span id="checkDate"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-1">8</td>
-                <td>Timezone</td>
-                <td>
-                    <span id="checkTimezone"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-1">9</td>
-                <td>Transaction No.</td>
-                <td>
-                    <span id="checkTransactionId"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-1">10</td>
-                <td>Timestamp</td>
-                <td>
-                    <span id="checkTimestamp"></span>
-                </td>
-            </tr>
+        <form class="page-break" action="/bas-a/ro" method="post" onsubmit="return checkReadOnly();"
+            onreset="return checkReset();">
+            <table id="t2">
+                <tr class="section">
+                    <th colspan="3">
+                        <span class="form-name">eForm BAS-AV</span>
+                        <span class="form-porpuse">Check On Demand Status</span>
+                    </th>
+                </tr>
+                <tr class="section">
+                    <td class="col-1">
+                        1
+                    </td>
+                    <td>
+                        Enter <span class="rn">1 Read No</span> from <span class="rf">eForm BAS-A</span>
+                    </td>
+                    <td>
+                        <input name="rid" id="rid" type="text">
+                    </td>
+                </tr>
+                <tr class="section">
+                    <td colspan="3">
+                        <button type="submit">Check</button>
+                        <button type="reset">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="3">Response</th>
+                </tr>
+                <tr>
+                    <td class="col-1">2</td>
+                    <td>Is Demanded</td>
+                    <td>
+                        <span id="checkIsDemanded"></span>
+                    </td>
+                </tr>
+                <tr class="section">
+                    <td class="col-1">3</td>
+                    <td>Demanded Date</td>
+                    <td>
+                        <span id="checkDemandedDate"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="4">Response Verification</th>
+                </tr>
+                <tr>
+                    <td class="col-1">4</td>
+                    <td>Status</td>
+                    <td>
+                        <span id="checkStatus"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">5</td>
+                    <td>Demanded Timestamp</td>
+                    <td>
+                        <span id="checkDemanded"></span>
+                    </td>
+                </tr>
+                <tr class="section">
+                    <td class="col-1">6</td>
+                    <td>Signature</td>
+                    <td>
+                        <span id="checkSignature"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">7</td>
+                    <td>Date</td>
+                    <td>
+                        <span id="checkDate"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">8</td>
+                    <td>Timezone</td>
+                    <td>
+                        <span id="checkTimezone"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">9</td>
+                    <td>Transaction No.</td>
+                    <td>
+                        <span id="checkTransactionId"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">10</td>
+                    <td>Timestamp</td>
+                    <td>
+                        <span id="checkTimestamp"></span>
+                    </td>
+                </tr>
+            </table>
+        </form>
 
-        </table>
-
-        <table>
+        <table class="page-break">
             <tr class="section">
                 <th colspan="3">
                     <span class="form-name">eForm BAS-AD</span>
@@ -564,20 +570,22 @@
             
         </div>
 -->
+<!--
         <div class="question">
             <span class="mark">Q:</span>
             What is the difference between BAS-A tool and similar tooling.
         </div>
 
-        
-        <div class="answer">
-            <span class="mark">A:</span>
-            BAS-A have better reputation and provide greater flexibility.
-        </div>
+
+    <div class="answer">
+        <span class="mark">A:</span>
+        BAS-A have better reputation and provide greater flexibility.
+    </div>
+-->
 
         <div class="answer">
             <span class="mark">A:</span>
-            field 3. Edit No. used to demand an action
+            Person who has edit key can demand action. field 3. Edit No. used to demand an action
         </div>
 
         <div class="question">
