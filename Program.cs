@@ -74,9 +74,9 @@ app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignIn
     return Results.NotFound();
 });
 
-app.MapGet("/bas-a-create", (HttpContext context) =>
+app.MapGet("/bas-a", (HttpContext context) =>
 {
-    return Results.File("bas-a-create.html", contentType: "text/html");
+    return Results.File("bas-a.html", contentType: "text/html");
 });
 
 app.MapPost("/bas-a-create", (BasA input, HttpContext context) =>
@@ -124,7 +124,15 @@ app.MapPost("/bas-a/", (BasA input, HttpContext context) =>
 
     if (BasA.Demand(output.Id!.Value))
     {
-        return Results.Ok(output);
+        output = BasA.FindById(output.Id.Value);
+        if (output != null)
+        {
+            return Results.Ok(output);
+        }
+        else
+        {
+            return Results.NotFound();
+        }
     }
 
     return Results.BadRequest(input.CannotDemandReason());
