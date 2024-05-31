@@ -570,7 +570,7 @@
             
         </div>
 -->
-<!--
+        <!--
         <div class="question">
             <span class="mark">Q:</span>
             What is the difference between BAS-A tool and similar tooling.
@@ -709,7 +709,7 @@
                 document.getElementById("checkIsDemanded").textContent = data.demanded ? "Yes" : "No";
                 document.getElementById("checkSignature").textContent = data.signature;
                 document.getElementById("checkDemanded").textContent = data.demandedTimestamp;
-                document.getElementById("checkDemandedDate").textContent = data.demanded.toLocaleString();
+                document.getElementById("checkDemandedDate").textContent = data.demanded ? new Date(date.demanded).toLocaleString() : "-";
                 break;
         }
     }
