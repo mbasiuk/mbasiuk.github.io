@@ -709,7 +709,7 @@
                 document.getElementById("checkIsDemanded").textContent = data.demanded ? "Yes" : "No";
                 document.getElementById("checkSignature").textContent = data.signature;
                 document.getElementById("checkDemanded").textContent = data.demandedTimestamp;
-                document.getElementById("checkDemandedDate").textContent = data.demanded;
+                document.getElementById("checkDemandedDate").textContent = data.demanded.toLocaleString();
                 break;
         }
     }
