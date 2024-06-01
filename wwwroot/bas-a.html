@@ -55,10 +55,18 @@
             width: 600px;
         }
 
+        .responsive-label {
+            display: block;
+        }
+
         @media(min-width: 600px) {
             .container {
                 width: 600px;
                 margin: 0 auto;
+            }
+
+            .responsive-label {
+                display: inline;
             }
 
             .spacer {
@@ -110,7 +118,7 @@
         .answer {
             margin: 0 0 1em 0;
         }
-        
+
         .answer:last-child {
             padding-bottom: .5em;
             margin: 0;
@@ -153,7 +161,9 @@
         }
 
         @media (prefers-color-scheme: dark) {
-            html, body {
+
+            html,
+            body {
                 background-color: #000;
                 color: #aaa;
             }
@@ -395,7 +405,7 @@
                         <td></td>
                         <td>
                             <label>
-                                <input id="durationCustom" name="durationCustom" value="" type="text">
+                                <input id="durationCustom" name="durationCustom" value="" type="text" placeholder="we need those to last 2 years.">
                             </label>
                         </td>
                     </tr>
@@ -417,13 +427,12 @@
                     </tr>
 
                     <tr class="section">
-                        <td></td>
-                        <td>leave the message with contact information, budget, prefferable method of payment, etc.
-                        </td>
-                        <td>
-                            <label>
-                                <textarea id="message" name="message" cols="46" rows="5"></textarea>
+                        <td colspan="3">
+                            <label class="responsive-label" for="message">
+                                leave the message with contact information,
+                                budget, prefferable method of payment, etc.
                             </label>
+                            <textarea id="message" placeholder="Hi, this is Jenny, jenny.roberts@example.com. We would like to have buy 20 more BAS-A licenses for this quater. For end of this year. May I have quote for those? We are targeting the same budget, and same payment method. Thanks." name="message" cols="46" rows="5"></textarea>
                         </td>
                     </tr>
 
