@@ -153,7 +153,7 @@
         }
 
         @media (prefers-color-scheme: dark) {
-            body {
+            html, body {
                 background-color: #000;
                 color: #aaa;
             }
@@ -170,7 +170,7 @@
             }
 
             .spacer {
-                background-color: #111;
+                background-color: #222;
                 box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.6);
             }
 
@@ -229,10 +229,10 @@
                         <td class="col-1">
                             1
                         </td>
-                        <td>
+                        <td class="col-2">
                             Enter <span class="rn">1 Read No</span> from <span class="rf">eForm BAS-A</span>
                         </td>
-                        <td>
+                        <td class="col-3">
                             <input name="rid" id="rid" type="text">
                         </td>
                     </tr>
@@ -247,15 +247,15 @@
                     </tr>
                     <tr>
                         <td class="col-1">2</td>
-                        <td>Is Demanded</td>
-                        <td>
+                        <td class="col-2">Is Demanded</td>
+                        <td class="col-3">
                             <span id="checkIsDemanded"></span>
                         </td>
                     </tr>
                     <tr class="section">
                         <td class="col-1">3</td>
-                        <td>Demanded Date</td>
-                        <td>
+                        <td class="col-2">Demanded Date</td>
+                        <td class="col-3">
                             <span id="checkDemandedDate"></span>
                         </td>
                     </tr>
@@ -264,50 +264,50 @@
                     </tr>
                     <tr>
                         <td class="col-1">4</td>
-                        <td>Status</td>
-                        <td>
+                        <td class="col-2">Status</td>
+                        <td class="col-3">
                             <span id="checkStatus"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-1">5</td>
-                        <td>Demanded Timestamp</td>
-                        <td>
+                        <td class="col-2">Demanded Timestamp</td>
+                        <td class="col-3">
                             <span id="checkDemanded"></span>
                         </td>
                     </tr>
                     <tr class="section">
                         <td class="col-1">6</td>
-                        <td>Signature</td>
-                        <td>
+                        <td class="col-2">Signature</td>
+                        <td class="col-3">
                             <span id="checkSignature"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-1">7</td>
-                        <td>Date</td>
-                        <td>
+                        <td class="col-2">Date</td>
+                        <td class="col-3">
                             <span id="checkDate"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-1">8</td>
-                        <td>Timezone</td>
-                        <td>
+                        <td class="col-2">Timezone</td>
+                        <td class="col-3">
                             <span id="checkTimezone"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-1">9</td>
-                        <td>Transaction No.</td>
-                        <td>
+                        <td class="col-2">Transaction No.</td>
+                        <td class="col-3">
                             <span id="checkTransactionId"></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-1">10</td>
-                        <td>Timestamp</td>
-                        <td>
+                        <td class="col-2">Timestamp</td>
+                        <td class="col-3">
                             <span id="checkTimestamp"></span>
                         </td>
                     </tr>
@@ -329,10 +329,10 @@
                     <td class="col-1">
                         1
                     </td>
-                    <td>
+                    <td class="col-2">
                         Enter <span class="rn">2 Edit No</span> from <span class="rf">eForm BAS-A</span>
                     </td>
-                    <td>
+                    <td class="col-3">
                         <input name="did" id="did" type="text">
                     </td>
                 </tr>
@@ -348,7 +348,6 @@
     <div class="spacer page-break"></div>
     <div class="wrapper">
         <div class="container">
-
             <form action="/bas-a-create" method="post" onsubmit="return reload();">
                 <table>
                     <tr class="section">
@@ -361,10 +360,10 @@
                         <td class="col-1">
                             1
                         </td>
-                        <td>
+                        <td class="col-2">
                             Service Time . . . . . . . .
                         </td>
-                        <td>
+                        <td class="col-3">
                             <label>
                                 <input name="duration" value="1months" type="radio">
                                 1 month
@@ -402,9 +401,9 @@
                     </tr>
 
                     <tr>
-                        <td>2</td>
-                        <td>License key</td>
-                        <td>
+                        <td class="col-1">2</td>
+                        <td class="col-2">License key</td>
+                        <td class="col-3">
                             <label>
                                 <input id="licenseKey" name="linenseKey" value="" type="text">
                             </label>
