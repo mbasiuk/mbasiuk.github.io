@@ -30,8 +30,13 @@
         }
 
         .container {
-            width: 500px;
+            width: 600px;
             margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 1.5em 0;
         }
 
         textarea {
@@ -49,10 +54,8 @@
             }
         }
 
-        @media(min-width: 500px) {
-            body {
-                padding: 2em;
-            }
+        @media(min-width: 600px) {
+            body {}
         }
 
         .description {
@@ -64,7 +67,6 @@
             border-top: 1px solid black;
             border-bottom: 1px solid black;
             border-collapse: collapse;
-            margin: 4em 0 8em 0;
         }
 
         .col-1 {
@@ -131,6 +133,37 @@
             font-size: smaller;
         }
 
+        .spacer {
+            height: 8em;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: black;
+                color: #aaa;
+            }
+
+            button,
+            textarea,
+            input[type=text] {
+                background-color: #aaa;
+                color: black;
+            }
+
+            .form-name {
+                border-right-color: #aaa;
+            }
+
+            .spacer {
+                background-color: #111;
+                box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.6);
+            }
+
+            a {
+                color: #23a5e0;
+            }
+        }
+
         @media print {
             .page-break {
                 page-break-after: always;
@@ -147,14 +180,16 @@
         </h2>
 
         <div class="description page-break">
-            The purpose of this tool is to provide independent private party confirmation for a demand such as payment
+            The purpose of this tool is to provide independent private party confirmation for a demand such as
+            payment
             confirmations, contract terminations, demand for insurance companies and other on-demand activities.
             Using this tool reduces the likelihood of either party missing or denying the existence of the demand
             actions.
         </div>
-
-        <form class="page-break" action="/bas-a/ro" method="post" onsubmit="return checkReadOnly();"
-            onreset="return checkReset();">
+    </div>
+    <div class="spacer page-break"></div>
+    <div class="container">
+        <form action="/bas-a/ro" method="post" onsubmit="return checkReadOnly();" onreset="return checkReset();">
             <table id="t2">
                 <tr class="section">
                     <th colspan="3">
@@ -250,8 +285,10 @@
                 </tr>
             </table>
         </form>
-
-        <table class="page-break">
+    </div>
+    <div class="spacer page-break"></div>
+    <div class="container">
+        <table>
             <tr class="section">
                 <th colspan="3">
                     <span class="form-name">eForm BAS-AD</span>
@@ -275,6 +312,10 @@
                 </td>
             </tr>
         </table>
+
+    </div>
+    <div class="spacer page-break"></div>
+    <div class="container">
 
         <form action="/bas-a-create" method="post" onsubmit="return reload();">
             <table>
@@ -349,7 +390,7 @@
                     <td>leave the message with contact information, budget, prefferable method of payment, etc. </td>
                     <td>
                         <label>
-                            <textarea id="message" name="message" cols="37" rows="5"></textarea>
+                            <textarea id="message" name="message" cols="46" rows="5"></textarea>
                         </label>
                     </td>
                 </tr>
@@ -361,7 +402,9 @@
                 </tr>
             </table>
         </form>
-
+    </div>
+    <div class="spacer page-break"></div>
+    <div class="container">
         <table id="t1">
             <tr class="section">
                 <th colspan="3">
@@ -431,7 +474,9 @@
                 </td>
             </tr>
         </table>
-
+    </div>
+    <div class="spacer page-break"></div>
+    <div class="container">
         <table>
             <tr class="section">
                 <th colspan="3">Form BAS-A Description</th>
@@ -490,7 +535,9 @@
                 </td>
             </tr>
         </table>
-
+    </div>
+    <div class="spacer page-break"></div>
+    <div class="container">
         <div class="question">
             <span class="mark">Q:</span>
             When to use the tool?
@@ -624,6 +671,7 @@
             or email <a href="mailto:mykhailo.basiuk+basa@gmail.com">mykhailo.basiuk+basa@gmail.com</a>
         </div>
     </div>
+    <div class="spacer page-break"></div>
 </body>
 
 <script>
