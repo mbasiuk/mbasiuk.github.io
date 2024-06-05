@@ -1,0 +1,12 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256">
+	<title>bas-a</title>
+	<style>
+		.s0 { fill: #ffffff;stroke: #b98d0a;stroke-miterlimit:10;stroke-width: 34 } 
+	</style>
+	<g id="Layer 1">
+		<path id="Shape 1" fill-rule="evenodd" class="s0" d="m312.5 74c74.4 0 134.5 58.3 134.5 130.5 0 72.2-60.1 130.5-134.5 130.5-74.4 0-134.5-58.3-134.5-130.5 0-72.2 60.1-130.5 134.5-130.5z"/>
+		<path id="Shape 2" fill-rule="evenodd" class="s0" d="m138.5 202c7.5 0 13.5 6 13.5 13.5 0 7.5-6 13.5-13.5 13.5-7.5 0-13.5-6-13.5-13.5 0-7.5 6-13.5 13.5-13.5z"/>
+		<path id="Shape 3" fill-rule="evenodd" class="s0" d="m106 275c12.2 0 22 9.4 22 21 0 11.6-9.8 21-22 21-12.2 0-22-9.4-22-21 0-11.6 9.8-21 22-21z"/>
+		<path id="Shape 4" fill-rule="evenodd" class="s0" d="m90 400c16 0 29 12.5 29 28 0 15.5-13 28-29 28-16 0-29-12.5-29-28 0-15.5 13-28 29-28z"/>
+	</g>
+</svg>
