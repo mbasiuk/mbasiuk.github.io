@@ -118,6 +118,7 @@ function getServerDetails() {
             return;
         }
         serverdetails.textContent = this.responseText;
+        serverdetails.textContent = JSON.stringify(JSON.parse(this.responseText), null, '\t');
     };
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("tid", crypto.randomUUID());
