@@ -1,0 +1,61 @@
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+}
+
+label,
+input[type=submit] {
+    margin: 1em 0 0 0;
+}
+
+h2 {
+    font-size: larger;
+}
+
+::selection {
+    background: #f75b2a;
+    color: white;
+}
+
+::-moz-selection {
+    background: #f75b2a;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#searchbiz {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.date {
+    background-color: yellow;
+}
+
+#visits {
+    padding: 1em;
+}
+
+#visitbypages {
+    display: flex;
+    flex-direction: column;
+}
+
+.visit {
+    display: flex;
+}
+
+.visit span {
+    padding: 0 1em;
+}
+
+.sp {
+    flex: auto;
+}

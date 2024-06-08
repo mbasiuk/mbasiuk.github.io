@@ -67,6 +67,22 @@ app.MapPost("/tool/search/recent", (HttpContext context) =>
     return Results.Ok(CompanySearch.Recent());
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
+app.MapPost("/tool/serverdetails", (HttpContext context) =>
+{
+    return Results.Ok(new
+    {
+        Protocol = context.Request.Protocol.ToString(),
+        IsHttps = context.Request.IsHttps,
+        context_Connection_Id = context.Connection.Id,
+        LocalIpAddress = context.Connection.LocalIpAddress!.ToString(),
+        LocalPort = context.Connection.LocalPort.ToString(),
+        RemoteIpAddress = context.Connection.RemoteIpAddress!.ToString(),
+        RemotePort = context.Connection.RemotePort.ToString(),
+        ClientHearders = context.Request.Headers.Select(x => new { x.Key, x.Value }).ToList(),
+        Items = context.Items.Select(x => new { x.Key, x.Value }).ToList(),
+    });
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
+
 app.MapPost("signin", (SignInRecord signIn, HttpContext context, IOptions<SignInOptions> options) =>
 {
     SignInOptions singInOptions = options.Value;
