@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -15,86 +12,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="description" content="client search tool">
     <title>Dashboard: </title>
-    <style>
-        body,
-        input,
-        textarea {
-            font-family: 'Roboto', Tahoma, sans-serif;
-            font-size: 15px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            width: 20em;
-        }
-
-        label,
-        input[type=submit] {
-            margin: 1em 0 0 0;
-        }
-
-        h2 {
-            font-size: larger;
-        }
-
-        ::selection {
-            background: #f75b2a;
-            color: white;
-        }
-
-        ::-moz-selection {
-            background: #f75b2a;
-            color: white;
-        }
-
-        body {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        #searchbiz {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .date {
-            background-color: yellow;
-        }
-
-        #visits {
-            padding: 1em;
-        }
-
-        #visitbypages {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .visit {
-            display: flex;
-        }
-
-        .visit span {
-            padding: 0 1em;
-        }
-
-        .sp {
-            flex: auto;
-        }
-
-        .link {
-            align-self: center;
-            margin: 0 20px 0 0;
-            letter-spacing: 1.6px;
-        }
-
-        .link:hover {
-            color: #0081bc;
-            transition: 300ms;
-        }
-    </style>
+    <link rel="stylesheet" href="forms.css" />
+    <link rel="stylesheet" href="tool.css" />
     <script src="/tool.js"></script>
 </head>
 
@@ -129,11 +48,18 @@
     <div id="visits">
         <h2>Total: </h2>
         <div id="visittotal"></div>
-        <button class="link" onclick="return ignoreProbing(event)">Mark as Probing</button>
+        <button onclick="return ignoreProbing(event)">Mark as Probing</button>
         <div>By Pages:</div>
         <div id="visitbypages">
         </div>
     </div>
+
+    <form id="sd" onsubmit="return getServerDetails();">
+        <h2>Server Details</h2>
+        <input type="submit">
+        <pre id="serverdetails">
+        </pre>
+    </form>
 </body>
 
 </html>

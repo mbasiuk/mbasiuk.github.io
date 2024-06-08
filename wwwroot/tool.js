@@ -106,5 +106,24 @@ function ignoreProbing(event) {
     return false;
 }
 
+function getServerDetails() {
+    var serverdetails = document.getElementById("serverdetails");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/tool/serverdetails", true);
+    xhr.onreadystatechange = function () {
+        if (this.readyState < 4) {
+            return;
+        }
+        if (this.status > 302) {
+            return;
+        }
+        serverdetails.textContent = this.responseText;
+    };
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("tid", crypto.randomUUID());
+    xhr.send();
+    return false;
+}
+
 getVisits();
 getSearchRecent();
