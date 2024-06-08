@@ -8,124 +8,15 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <title>Sign In</title>
-    <style>
-        html,
-        body {
-            margin: 0;
-        }
-
-        body {
-            font-family: 'Roboto', Tahoma, sans-serif;
-            letter-spacing: 1.3px;
-            font-size: 13px;
-        }
-
-        input {
-            font-family: inherit;
-            letter-spacing: inherit;
-        }
-
-        .card {
-            background: white;
-            box-shadow: 0 4px 8px rgba(60, 65, 70, 0.2);
-            position: relative;
-            text-transform: uppercase;
-            border-radius: 8px;
-            padding: 3em 0;
-            width: 33em;
-            margin: 20vh auto 0;
-        }
-
-        .card:hover {
-            box-shadow: 0 7px 11px rgba(60, 65, 70, 0.2);
-        }
-
-        .card h2 {
-            padding: 0 0 0 3em;
-            margin: 0 0 1em 0;
-        }
-
-        label {
-            margin: 0 0 1em 0;
-        }
-
-        label:last-of-type {
-            margin: 0 0 2em 0;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            align-items: flex-end;
-            flex-wrap: wrap;
-        }
-
-        input[type=text],
-        input[type=password] {
-            border: none;
-            outline: none;
-            padding: 13px 15px;
-            border-radius: 3px;
-            margin: 0 0 0 1em;
-            height: 28px;
-            line-height: 24px;
-            font-size: 16px;
-        }
-
-        input[type=submit] {
-            display: inline-block;
-            font-size: 16px;
-            line-height: 1em;
-            padding: 0.8em 1.6em;
-            text-decoration: none;
-            border: 1px solid #23a5e0;
-            color: rgb(86, 86, 86);
-            margin: 0 0.2em;
-            border-radius: 22px;
-        }
-
-        input[type=submit]:hover {
-            color: #23a5e0;
-            text-decoration: underline;
-        }
-
-        ::selection {
-            background: #f75b2a;
-            color: white;
-        }
-
-        ::-moz-selection {
-            background: #f75b2a;
-            color: white;
-        }
-
-        span {
-            user-select: none;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: black;
-            }
-
-            .card {
-                background: rgb(49, 49, 49);
-                color: rgb(160, 158, 158);
-            }
-
-            input[type=submit] {
-                background: black;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="forms.css">
     <script src="signin.js"></script>
+    
 </head>
 
 <body>
 
     <div class="card">
-
+        <div class="background"></div>
         <h2>
             <span>Sign In:</span>
         </h2>

@@ -26,6 +26,17 @@ app.MapGet("signin", () =>
     return Results.File("signin.html", contentType: "text/html");
 });
 
+app.MapGet("signup", () =>
+{
+    return Results.File("signup.html", contentType: "text/html");
+});
+
+app.MapPost("signup", ([FromBody] SignUpRecord rec, HttpContext context) =>
+{
+    User.SignUp(rec, context);
+    return Results.NoContent();
+});
+
 app.MapGet("tool", (HttpContext context) =>
 {
     return Results.File("tool.html", contentType: "text/html");
