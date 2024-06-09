@@ -7,7 +7,6 @@ public class Visit : LiteEntity
     private readonly string Page;
     private readonly string SessionId;
     private readonly string? Auth;
-    protected string ConnectionId;
     protected string? Ip;
 
     public Visit(HttpContext context)
@@ -16,8 +15,7 @@ public class Visit : LiteEntity
         Page = context.Request.Path;
         SessionId = (string)context.Items[nameof(SessionId)]!;
         Auth = context.Request.Cookies["auth"]?.ToString() ?? "-";
-        ConnectionId = context.Connection.Id ?? "-";
-        Ip = context.Connection.RemoteIpAddress?.ToString() ?? "-";
+        Ip = context.Request.Headers["X-Forwarded-For"].ToString() ?? "-";
     }
 
     public void Track()
@@ -26,11 +24,10 @@ public class Visit : LiteEntity
         Connection.Open();
         var cmd = Connection.CreateCommand();
         cmd.CommandTimeout = CommandTimeout;
-        cmd.CommandText = "INSERT INTO Visit(page, session_id, auth, connection_id, ip) VALUES (@page, @session_id, @auth, @connection_id, @ip)";
+        cmd.CommandText = "INSERT INTO Visit(page, session_id, auth, ip) VALUES (@page, @session_id, @auth, @ip)";
         cmd.Parameters.Add(new SqliteParameter("page", Page));
         cmd.Parameters.Add(new SqliteParameter("session_id", SessionId));
         cmd.Parameters.Add(new SqliteParameter("auth", Auth));
-        cmd.Parameters.Add(new SqliteParameter("connection_id", ConnectionId));
         cmd.Parameters.Add(new SqliteParameter("ip", Ip));
         cmd.ExecuteNonQuery();
     }
