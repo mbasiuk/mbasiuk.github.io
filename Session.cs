@@ -7,7 +7,6 @@ public class Session : LiteEntity
     protected DateTimeOffset? Created { get; set; }
     protected DateTimeOffset? Expires { get; set; }
     protected long Id { get; set; }
-    protected string? ConnectionId { get; set; }
     protected string? AcceptedLang { get; set; }
     protected string? LocalIp { get; set; }
     protected int? LocalPort { get; set; }
@@ -32,7 +31,7 @@ public class Session : LiteEntity
             Connection.Open();
             using var cmd = Connection.CreateCommand();
             cmd.CommandTimeout = CommandTimeout;
-            cmd.CommandText = "INSERT INTO Session (session_id, connection_id, accept_lang, local_ip, local_port, ip, port, user_agent, origin, referer, platform, ua, mobile) VALUES(@session_id, @connection_id, @accept_lang, @local_ip, @local_port, @ip, @port, @user_agent, @origin, @referer, @platform, @ua, @mobile)";
+            cmd.CommandText = "INSERT INTO Session (session_id, accept_lang, local_ip, local_port, ip, port, user_agent, origin, referer, platform, ua, mobile) VALUES(@session_id, @accept_lang, @local_ip, @local_port, @ip, @port, @user_agent, @origin, @referer, @platform, @ua, @mobile)";
             cmd.Parameters.Add(new SqliteParameter("session_id", SessionId));
             CreateContextParams(cmd);
             var result = cmd.ExecuteNonQuery();
@@ -56,7 +55,6 @@ public class Session : LiteEntity
 
     private void CreateContextParams(SqliteCommand cmd)
     {
-        cmd.Parameters.Add(new SqliteParameter("connection_id", ConnectionId));
         cmd.Parameters.Add(new SqliteParameter("accept_lang", AcceptedLang));
         cmd.Parameters.Add(new SqliteParameter("local_ip", LocalIp));
         cmd.Parameters.Add(new SqliteParameter("local_port", LocalPort));
@@ -73,7 +71,6 @@ public class Session : LiteEntity
 
     private void UpdateFromContext(HttpContext context)
     {
-        ConnectionId = context.Connection.Id ?? "-";
         AcceptedLang = context.Request.Headers.AcceptLanguage;
         AcceptedLang ??= "-";
         LocalIp = context.Connection.LocalIpAddress?.ToString();

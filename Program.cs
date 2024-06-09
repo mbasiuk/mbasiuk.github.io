@@ -73,7 +73,6 @@ app.MapPost("/tool/serverdetails", (HttpContext context) =>
     {
         Protocol = context.Request.Protocol.ToString(),
         IsHttps = context.Request.IsHttps,
-        context_Connection_Id = context.Connection.Id,
         LocalIpAddress = context.Connection.LocalIpAddress!.ToString(),
         LocalPort = context.Connection.LocalPort.ToString(),
         RemoteIpAddress = context.Connection.RemoteIpAddress!.ToString(),

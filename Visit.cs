@@ -1,21 +1,21 @@
-using System.Text;
 using Microsoft.Data.Sqlite;
 
 public class Visit : LiteEntity
 {
-    private readonly DateTimeOffset Date;
     private readonly string Page;
     private readonly string SessionId;
     private readonly string? Auth;
     protected string? Ip;
 
+    protected string? TransactionId;
+
     public Visit(HttpContext context)
     {
-        Date = DateTimeOffset.UtcNow;
         Page = context.Request.Path;
         SessionId = (string)context.Items[nameof(SessionId)]!;
         Auth = context.Request.Cookies["auth"]?.ToString() ?? "-";
         Ip = context.Request.Headers["X-Forwarded-For"].ToString() ?? "-";
+        TransactionId = context.Request.Headers["Tid"].ToString() ?? "-";
     }
 
     public void Track()
@@ -24,11 +24,12 @@ public class Visit : LiteEntity
         Connection.Open();
         var cmd = Connection.CreateCommand();
         cmd.CommandTimeout = CommandTimeout;
-        cmd.CommandText = "INSERT INTO Visit(page, session_id, auth, ip) VALUES (@page, @session_id, @auth, @ip)";
+        cmd.CommandText = "INSERT INTO Visit(page, session_id, auth, ip. transactionId) VALUES (@page, @session_id, @auth, @ip, @transactionId)";
         cmd.Parameters.Add(new SqliteParameter("page", Page));
         cmd.Parameters.Add(new SqliteParameter("session_id", SessionId));
         cmd.Parameters.Add(new SqliteParameter("auth", Auth));
         cmd.Parameters.Add(new SqliteParameter("ip", Ip));
+        cmd.Parameters.Add(new SqliteParameter("transactionId", TransactionId));
         cmd.ExecuteNonQuery();
     }
 
