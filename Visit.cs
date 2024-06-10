@@ -130,6 +130,7 @@ public class Visit : LiteEntity
         var sql =
         @"select v.id,
             v.page,
+            v.ip,
             v.date,
             s.created,
             s.user_agent, 
@@ -138,8 +139,7 @@ public class Visit : LiteEntity
             s.origin, 
             s.platform,
             s.ua,
-            s.mobile,
-            v.ip
+            s.mobile
         from visit v
         inner join visit v1 on v1.page = v.page 
         inner join session s on s.session_id = v.session_id
@@ -161,6 +161,7 @@ public class Visit : LiteEntity
             var details = new VisitDetails(
                 Id: reader.GetInt32(0),
                 Page: reader.GetString(1),
+                Ip: reader.IsDBNull(2) ? null! : reader.GetString(2),
                 Timestamp: reader.GetInt32(3),
                 SessionTimestamp: reader.IsDBNull(4) ? null : reader.GetInt32(4),
                 UserAgent: reader.IsDBNull(5) ? null! : reader.GetString(5),
@@ -169,8 +170,7 @@ public class Visit : LiteEntity
                 Origin: reader.IsDBNull(8) ? null! : reader.GetString(8),
                 Platform: reader.IsDBNull(9) ? null! : reader.GetString(9),
                 UA: reader.IsDBNull(10) ? null! : reader.GetString(10),
-                Mobile: reader.IsDBNull(11) ? null! : reader.GetString(11),
-                Ip: reader.IsDBNull(12) ? null! : reader.GetString(12)
+                Mobile: reader.IsDBNull(11) ? null! : reader.GetString(11)
             );
             result.Add(details);
         }
@@ -190,4 +190,4 @@ public class VisitCriteria
     public string? Interval { get; set; }
 }
 
-public record VisitDetails(int Id, string Page, int Timestamp, int? SessionTimestamp, string UserAgent, string AcceptedLang, string Referer, string Origin, string Platform, string UA, string Mobile, string Ip);
+public record VisitDetails(int Id, string Page, string Ip, int Timestamp, int? SessionTimestamp, string UserAgent, string AcceptedLang, string Referer, string Origin, string Platform, string UA, string Mobile);
