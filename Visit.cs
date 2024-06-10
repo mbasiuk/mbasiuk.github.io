@@ -153,7 +153,7 @@ public class Visit : LiteEntity
         cmd.CommandText = sql;
         cmd.Parameters.AddWithValue("id", pageId);
         cmd.Parameters.AddWithValue("startDate", start);
-        cmd.Parameters.AddWithValue("startDate", end);
+        cmd.Parameters.AddWithValue("endDate", end);
         var result = new List<VisitDetails>();
         var reader = cmd.ExecuteReader();
         while (reader.Read())
