@@ -26,7 +26,7 @@ public class Visit : LiteEntity
         Connection.Open();
         var cmd = Connection.CreateCommand();
         cmd.CommandTimeout = CommandTimeout;
-        cmd.CommandText = "INSERT INTO Visit(page, session_id, auth, ip. transactionId) VALUES (@page, @session_id, @auth, @ip, @transactionId)";
+        cmd.CommandText = "INSERT INTO Visit(page, session_id, auth, ip, transactionId) VALUES (@page, @session_id, @auth, @ip, @transactionId)";
         cmd.Parameters.Add(new SqliteParameter("page", Page));
         cmd.Parameters.Add(new SqliteParameter("session_id", SessionId));
         cmd.Parameters.Add(new SqliteParameter("auth", Auth));
