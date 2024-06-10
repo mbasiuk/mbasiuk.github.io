@@ -44,9 +44,19 @@ app.MapGet("tool", (HttpContext context) =>
 
 app.MapPost("home_page", () => Results.Ok());
 
-app.MapPost("tool/visits", (HttpContext context) =>
+app.MapPost("/tool/visits", (HttpContext context) =>
 {
     return Visit.GetSummary();
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
+
+app.MapGet("/tool/visits/page", () =>
+{
+    return Results.File("visit.html", contentType: "text/html");
+}).AddEndpointFilter<AuthorizeSuperUserFilter>();
+
+app.MapPost("/tool/visits/page", ([FromBody] VisitCriteria criteria) =>
+{
+    return Visit.GetByPage(criteria.PageId, criteria.Start, criteria.End, criteria.Interval);
 }).AddEndpointFilter<AuthorizeSuperUserFilter>();
 
 app.MapPost("tool/visits/ignore", ([FromBody] Visits visits, HttpContext context) =>

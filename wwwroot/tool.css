@@ -1,4 +1,3 @@
-
 form {
     display: flex;
     flex-direction: column;
@@ -12,16 +11,6 @@ input[type=submit] {
 
 h2 {
     font-size: larger;
-}
-
-::selection {
-    background: #f75b2a;
-    color: white;
-}
-
-::-moz-selection {
-    background: #f75b2a;
-    color: white;
 }
 
 body {
@@ -58,4 +47,8 @@ body {
 
 .sp {
     flex: auto;
+}
+
+span {
+    color: inherit;
 }
