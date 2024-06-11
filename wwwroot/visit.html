@@ -5,17 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/forms.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <style rel="stylesheet" href="/visit.css"></style>
+    <title>Page Visit</title>
 </head>
 
 <body>
     <div style="display: flex;">
-        Page: 
+        Page:
+
+        <div>
+            <label for="start">Start Date:</label>
+            <input type="datetime-local" id="start" name="start" />
+        </div>
+
+        <div>
+            <label for="end">End Date:</label>
+            <input type="datetime-local" id="end" name="end" />
+        </div>
+
+        <div id="ranges">
+            <input type="button" value="1 hours" class="btn-range onehours" />
+            <input type="button" value="1 days" class="btn-range onedays">
+            <input type="button" value="1 weeks" class="btn-range oneweeks">
+            <input type="button" value="1 months" class="btn-range onemonth">
+            <input type="button" value="1 year" class="btn-range oneyear">
+            <input type="button" value="all" class="btn-range all">
+        </div>
+
+        <div>
+            <input type="button" value="load" id="load" name="load">
+        </div>
+
     </div>
 
     <pre id="result">
     </pre>
 
+    <span style="width: 64px; height: 16px;">
+        <svg id="visits" style="width: 100%; height: 100%;">
+        </svg>
+    </span>
+
 </body>
 <script src="/visit.js"></script>
+
 </html>
