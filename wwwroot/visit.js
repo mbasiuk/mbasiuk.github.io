@@ -7,7 +7,7 @@ var criteria = {
     interval: ""
 };
 
-var startEl, endEl, vizEl;
+var startEl, endEl, vizEl, vizSvgEl;
 
 function getPageInfo() {
     var xhr = new XMLHttpRequest();
@@ -32,15 +32,34 @@ function pageInfoCallback() {
 }
 
 function drawSparklines(vizEl, data, criteria) {
-    var width = (criteria.end - criteria.start);
-    var parts = 10;
-    var part = width / parts;
-    var start = 0;
-    var end = part;
-    for (var i = 0; i < parts; i++) {
-        start = start + 1;
-        end = end + 1;
+    var width = (criteria.end - criteria.start) || 1;
+    var buckets_number = 12;
+
+    var buckets = Array(buckets_number).fill(0);
+    for (var i = 0; i < data.length; i++) {
+        var x = data[i].timestamp;
+        if ((x < criteria.start) || (x > criteria.end)) {
+            continue;
+        }
+        var bucket = Math.trunc(((x - criteria.start) / width) * buckets_number);
+        buckets[bucket]++;
     }
+
+    var d = "";
+    var w = 10;
+    var x = 5;
+    var y = 0;
+    for (var i = 0; i < buckets_number; i++) {
+        y = buckets[i];
+        if (y) {
+            d += " M " + x + " 0 V " + y;
+        }
+        x += w;
+    }
+    d += " Z";
+    var max = Math.max(...buckets) || 1;
+    vizEl.setAttribute("d", d);
+    vizSvgEl.setAttribute("viewBox", "0 0 " + (x - 5) + " " + max);
 }
 
 function setDate(el, timestampSeconds) {
@@ -53,6 +72,7 @@ function onload() {
     startEl = document.getElementById("start");
     endEl = document.getElementById("end");
     vizEl = document.getElementById("visits");
+    vizSvgEl = document.getElementById("vizSvgEl");
     setDate(startEl, criteria.start);
     setDate(endEl, criteria.end);
     var rangesContainers = document.getElementById("ranges");

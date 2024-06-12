@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div style="display: flex;">
+    <div style="display: flex; align-items: center;">
         Page:
 
         <div>
@@ -37,6 +37,17 @@
             <input type="button" value="all" class="btn-range all">
         </div>
 
+        <span id="visitscontainer" style="margin: 0 1em; width: 64px; height: 20px; display: inline-block;">
+            <svg viewBox="0 0 150 2" id="vizSvgEl" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                style="width: 100%; height: 100%; overflow: hidden; left: 0px; top: 0px;">
+                <defs></defs>
+                <g>
+                    <rect x="0" y="0" width="100%" height="100%" fill="rgb(100, 100, 100)" />
+                    <path d="M 0 0 Z" id="visits" transform="scale (1, -1)" transform-origin="center" class="p1" stroke="#Fe5ada" stroke-width="5"></path>
+                </g>
+            </svg>
+        </span>
+
         <div>
             <input type="button" value="load" id="load" name="load">
         </div>
@@ -46,10 +57,7 @@
     <pre id="result">
     </pre>
 
-    <span style="width: 64px; height: 16px;">
-        <svg id="visits" style="width: 100%; height: 100%;">
-        </svg>
-    </span>
+
 
 </body>
 <script src="/visit.js"></script>
