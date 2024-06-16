@@ -7,7 +7,7 @@ var criteria = {
     interval: ""
 };
 
-var startEl, endEl, vizEl, vizSvgEl;
+var startEl, endEl, vizEl, vizSvgEl, rgEl;
 
 function getPageInfo() {
     var xhr = new XMLHttpRequest();
@@ -27,11 +27,118 @@ function pageInfoCallback() {
         return;
     }
     var data = JSON.parse(this.responseText);
-    document.getElementById("result").textContent = JSON.stringify(data, null, "\t");
     drawSparklines(vizEl, data, criteria);
+    renderGrid(rgEl, data);
+}
+
+function renderGrid(egEl, data) {
+    // 100% wide - row
+    // narrow - more vertical
+    var frag = document.createDocumentFragment();
+    var schema = ["id", "page", "ip", "timestamp", "time", "sessionTimestamp", "sessionTime", "userAgent", "acceptedLang", "referer", "origin", "platform", "ua", "mobile"];
+    var labels = {
+        "id": "id",
+        "page": "p",
+        "ip": "ip",
+        "timestamp": "ts",
+        "sessionTime": "st",
+        "time": "t",
+        "sessionTimestamp": "ft",
+        "userAgent": "ua",
+        "acceptedLang": "l",
+        "referer": "ref",
+        "origin": "or",
+        "platform": "p",
+        "ua": "ua2",
+        "mobile": "mob"
+    };
+    var classList = {
+        "id": "id",
+        "page": "p",
+        "ip": "ip",
+        "timestamp": "ts",
+        "time": "t",
+        "sessionTimestamp": "ft",
+        "sessionTime": "st",
+        "userAgent": "ua",
+        "acceptedLang": "l",
+        "referer": "ref",
+        "origin": "or",
+        "platform": "p",
+        "ua": "ua2",
+        "mobile": "mob"
+    };
+    var extentions = {
+        "userAgent": function (record, spanVal, spanLab, frag) {
+            if (/iphone/gi.test(record.userAgent)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("iphone");
+                spanVal.textContent = "";
+            }
+            if (/LinkedInApp/gi.test(record.userAgent)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("linkedin");
+            }
+            if(/windows nt/gi.test(record.userAgent)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("windows");
+                spanVal.textContent = "";
+            }
+        },
+        "ua": function(record, spanVal, spanLab, frag) {
+            if(/google chrome/gi.test(record.ua)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("googlechrome");
+                spanVal.textContent = "";
+            }
+        }
+    };
+
+    egEl.innerText = ""
+    for (var i = 0; i < data.length; i++) {
+        var record = data[i];
+        record.time = new Date(record.timestamp * 1000).toLocaleString();
+        record.sessionTime = new Date(record.sessionTimestamp * 1000).toLocaleString();
+        for (var j = 0; j < schema.length; j++) {
+            var col = schema[j];
+            var val = record[col];
+            var classes = classList[col];
+            if (!val || val == "-") {
+                continue;
+            }
+            var spanLab = document.createElement("span");
+            frag.appendChild(spanLab);
+            spanLab.classList.add(classes);
+            spanLab.classList.add("label");
+            spanLab.textContent = labels[col];
+            var spanVal = document.createElement("span");
+            frag.appendChild(spanVal);
+            spanVal.textContent = record[col];
+            spanVal.classList.add(classes);
+            spanVal.classList.add("value");
+            var exFun = extentions[col];
+            if (typeof (exFun) == "function") {
+                exFun(record, spanVal, spanLab, frag);
+            }
+        }
+        var container = document.createDocumentFragment();
+        var div = document.createElement("div");
+        div.className = "c";
+        div.appendChild(frag);
+        container.appendChild(div);
+        egEl.appendChild(container);
+    }
 }
 
 function drawSparklines(vizEl, data, criteria) {
+    if (!data.length) {
+        vizEl.setAttribute("d", "M 0 0 Z");
+        return;
+    }
     var width = (criteria.end - criteria.start) || 1;
     var buckets_number = 12;
 
@@ -76,6 +183,7 @@ function onload() {
     setDate(startEl, criteria.start);
     setDate(endEl, criteria.end);
     var rangesContainers = document.getElementById("ranges");
+    rgEl = document.getElementById("resultTable");
     rangesContainers.addEventListener("click", rangesOnClick);
     startEl.addEventListener("blur", updateFilter);
     endEl.addEventListener("blur", updateFilter);

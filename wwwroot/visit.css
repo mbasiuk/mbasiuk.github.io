@@ -1,0 +1,89 @@
+.c {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    background: #353535;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    transition: all 500ms;
+    overflow: hidden;
+    margin: 0 0 1px 0;
+}
+
+.c:hover {
+    box-shadow: rgba(2, 8, 20, 0.1) 0 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+}
+
+.grid {
+    overflow: hidden;
+    display: block;
+}
+
+.label {
+    color: #b3a8dd;
+    margin: 0 0.2em 0 0;
+}
+
+.label::after {
+    content: ':';
+}
+
+.value {
+    margin: 0 0.4em;
+}
+
+.t.value,
+.st.value {
+    min-width: 200px;
+}
+
+.id,
+.p,
+.ip,
+.ts,
+.ft {
+    display: none;
+}
+
+.iphone {
+    width: 14px;
+    height: 24px;
+    background-image: url(/img/iphone.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert();
+    margin: 1px 25px 0 3px
+}
+
+.linkedin {
+    width: 24px;
+    height: 24px;
+    background-image: url(/img/linkedin.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0.1em;
+}
+
+.windows {
+    width: 14px;
+    height: 14px;
+    background-image: url(/img/windows.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0.1em;
+}
+
+.ico {
+    filter: invert();
+}
+
+.googlechrome {
+    width: 14px;
+    height: 14px;
+    background-image: url(/img/googlechrome.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}

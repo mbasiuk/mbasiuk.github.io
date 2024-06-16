@@ -116,7 +116,6 @@ input[type=submit]:hover {
 }
 
 span {
-    user-select: none;
     color: white;
 }
 
