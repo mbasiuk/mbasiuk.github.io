@@ -81,26 +81,69 @@ function renderGrid(egEl, data) {
                 frag.appendChild(ico);
                 ico.classList.add("linkedin");
             }
-            if(/windows nt/gi.test(record.userAgent)) {
+            if (/windows nt/gi.test(record.userAgent)) {
                 var ico = document.createElement("span");
                 frag.appendChild(ico);
                 ico.classList.add("windows");
                 spanVal.textContent = "";
             }
+            if (/Macintosh/gi.test(record.userAgent)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("mac");
+                spanVal.classList.add("hidden");
+            }
         },
-        "ua": function(record, spanVal, spanLab, frag) {
-            if(/google chrome/gi.test(record.ua)) {
+        "ua": function (record, spanVal, spanLab, frag) {
+            if (/google chrome/gi.test(record.ua)) {
                 var ico = document.createElement("span");
                 frag.appendChild(ico);
                 ico.classList.add("googlechrome");
                 spanVal.textContent = "";
             }
+        },
+        "acceptedLang": function (record, spanVal, spanLab, frag) {
+            if (/en\-IN|\,hi;/gi.test(record.acceptedLang)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("flag-in");
+            }    
+            if (/zh\-CN\,/gi.test(record.acceptedLang)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("flag-cn");
+            }            
+
+            if (/en\-us/gi.test(record.acceptedLang)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("flag-us");
+            }
+            if (/\,uk;|en\-GB/gi.test(record.acceptedLang)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("flag-uk");
+            }
+            if (/de\-DE/gi.test(record.acceptedLang)) {
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("flag-de");
+            }
+            if(/fr\-FR/gi.test(record.acceptedLang)){
+                var ico = document.createElement("span");
+                frag.appendChild(ico);
+                ico.classList.add("flag-fr");
+            }
+            
         }
     };
 
     egEl.innerText = ""
     for (var i = 0; i < data.length; i++) {
         var record = data[i];
+        if (i === 0) {
+            record.userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36";
+        }
         record.time = new Date(record.timestamp * 1000).toLocaleString();
         record.sessionTime = new Date(record.sessionTimestamp * 1000).toLocaleString();
         for (var j = 0; j < schema.length; j++) {

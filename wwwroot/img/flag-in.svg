@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 30 20">
+  <!-- Saffron color band -->
+  <rect x="0" y="0" width="30" height="6.67" fill="#FF9933"/>
+  
+  <!-- White color band -->
+  <rect x="0" y="6.67" width="30" height="6.66" fill="#FFFFFF"/>
+  
+  <!-- Green color band -->
+  <rect x="0" y="13.33" width="30" height="6.67" fill="#138808"/>
+
+  <text x="7" y="12" font-family="Arial" font-size="10" fill="black">&#x1F4A9;</text>
+
+</svg>

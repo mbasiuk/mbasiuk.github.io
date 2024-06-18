@@ -1,3 +1,9 @@
+.header input[type=button],
+.header input[type=submit] {
+    padding: 0.2em 0.8em;
+}
+
+
 .c {
     display: flex;
     flex-wrap: wrap;
@@ -47,6 +53,10 @@
     display: none;
 }
 
+.hidden {
+    display: none;
+}
+
 .iphone {
     width: 14px;
     height: 24px;
@@ -83,6 +93,69 @@
     width: 14px;
     height: 14px;
     background-image: url(/img/googlechrome.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.mac {
+    width: 16px;
+    height: 16px;
+    background-image: url(/img/mac.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.flag-us {
+    width: 27px;
+    height: 14px;
+    background-image: url(/img/flag-us.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.flag-uk {
+    width: 28px;
+    height: 14px;
+    background-image: url(/img/flag-uk.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.flag-de {
+    width: 25px;
+    height: 15px;
+    background-image: url(/img/flag-de.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.flag-fr {
+    width: 21px;
+    height: 14px;
+    background-image: url(/img/flag-fr.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.flag-in {
+    width: 21px;
+    height: 14px;
+    background-image: url(/img/flag-in.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.flag-cn  {
+    width: 21px;
+    height: 14px;
+    background-image: url(/img/flag-cn.svg);
     background-repeat: no-repeat;
     background-size: contain;
     margin: 0.1em;
