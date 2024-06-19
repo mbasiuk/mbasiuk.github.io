@@ -107,6 +107,10 @@ input[type=submit]:hover {
     text-decoration: underline;
 }
 
+input[type=checkbox] {
+    transform: scale(1.6);
+}
+
 ::selection {
     background: #f75b2a;
     color: white;

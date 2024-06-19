@@ -89,6 +89,7 @@ body {
 
 .visit {
     display: flex;
+    align-items: center;
     line-height: 32px;
     background: #111;
     margin: 2px;
