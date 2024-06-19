@@ -18,15 +18,64 @@ body {
     flex-wrap: wrap;
 }
 
+.menu {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 30px;
+    overflow-y: auto;
+    border-top: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    .menu {
+        background: black;
+    }
+
+    .ico {
+        filter: invert();
+    }
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    padding: 0.2em 1em;
+    text-decoration: none
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.ico {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.1em;
+}
+
+.search {
+    background-image: url(/img/search.svg);
+}
+
+.visits {
+    background-image: url(/img/visits.svg);
+}
+
 #searchbiz {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-.date {
-    background-color: yellow;
-}
+.date {}
 
 #visits {
     padding: 1em;

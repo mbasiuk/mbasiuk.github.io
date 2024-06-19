@@ -18,48 +18,76 @@
 </head>
 
 <body>
-    <div id="searchbiz">
-        <h2>Search businesses:</h2>
-        <a href="https://dsbs.sba.gov">dsdb.sba.gov</a>
-    </div>
 
-    <form method="post" action="tool/search">
-        <h2>
-            Add new Search Description:
-        </h2>
-        <label for="criterias">Criterias:</label>
-        <textarea id="description" name="description"></textarea>
-        <input type="submit">
-    </form>
-
-    <form method="post" action="tool/company">
-        <h2>Company</h2>
-        <label for="id">ID:</label>
-        <input type="text" name="id" id="id" readonly>
-        <label for="url">URL:</label>
-        <input type="text" name="url" id="url" />
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email" />
-        <label for="weight">Weight:</label>
-        <input type="number" name="weight" id="weight" />
-        <input type="submit" />
-    </form>
-
-    <div id="visits">
-        <h2>Total: </h2>
-        <div id="visittotal"></div>
-        <button onclick="return ignoreProbing(event)">Mark as Probing</button>
-        <div>By Pages:</div>
-        <div id="visitbypages">
+    <div class="menu">
+        <div>
+            <a href="#visits">
+                <span class="ico visits"></span>
+                <span>Visits</span>
+            </a>
+        </div>
+        <div>
+            <a href="#searchbiz">
+                <span class="ico search"></span>
+                <span>Search Businesses</span>
+            </a>
+        </div>
+        <div>
+            <a href="#search">
+                <span class="serverdetails"></span>
+                <span>Server Details</span>
+            </a>
         </div>
     </div>
 
-    <form id="sd" onsubmit="return getServerDetails();">
-        <h2>Server Details</h2>
-        <input type="submit">
-        <pre id="serverdetails">
+    <div style="display: flex; flex-direction: column; flex-wrap: wrap;">
+
+        <div id="visits">
+            <h2>Total: </h2>
+            <div id="visittotal"></div>
+            <button onclick="return ignoreProbing(event)">Mark as Probing</button>
+            <div>By Pages:</div>
+            <div id="visitbypages">
+            </div>
+        </div>
+
+
+        <div id="searchbiz">
+            <h2>Search businesses:</h2>
+            <a href="https://dsbs.sba.gov">dsdb.sba.gov</a>
+        </div>
+
+        <form method="post" action="tool/search">
+            <h2>
+                Add new Search Description:
+            </h2>
+            <label for="criterias">Criterias:</label>
+            <textarea id="description" name="description"></textarea>
+            <input type="submit">
+        </form>
+
+        <form method="post" action="tool/company">
+            <h2>Company</h2>
+            <label for="id">ID:</label>
+            <input type="text" name="id" id="id" readonly>
+            <label for="url">URL:</label>
+            <input type="text" name="url" id="url" />
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" />
+            <label for="weight">Weight:</label>
+            <input type="number" name="weight" id="weight" />
+            <input type="submit" />
+        </form>
+
+  
+
+        <form id="sd" onsubmit="return getServerDetails();">
+            <h2>Server Details</h2>
+            <input type="submit">
+            <pre id="serverdetails">
         </pre>
-    </form>
+        </form>
+    </div>
 </body>
 
 </html>
