@@ -83,7 +83,7 @@ input[type=password] {
 
 input[type=text]:focus-visible,
 input[type=password]:focus-visible {
-    border: 3px solid #23a5e0;
+    border: 3px solid #3471d4;
 }
 
 button,
@@ -94,7 +94,7 @@ input[type=submit] {
     line-height: 1em;
     padding: 0.8em 1.6em;
     text-decoration: none;
-    border: 1px solid #23a5e0;
+    border: 1px solid #3471d4;
     color: rgb(86, 86, 86);
     margin: 0 0.2em;
     border-radius: 22px;
@@ -103,7 +103,7 @@ input[type=submit] {
 button:hover,
 input[type=button]:hover,
 input[type=submit]:hover {
-    color: #23a5e0;
+    color: #3471d4;
     text-decoration: underline;
 }
 
@@ -139,12 +139,12 @@ span {
 
     button,
     input[type=submit] {
-        background-color: #23a5e0;
+        background-color: #3471d4;
         color: #ccc;
     }
 
     a {
-        color: #23a5e0;
+        color: #3471d4;
     }
 
     button:hover,
