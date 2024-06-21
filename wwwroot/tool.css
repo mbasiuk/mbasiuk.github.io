@@ -29,7 +29,8 @@ body {
     align-items: center;
     justify-content: center;
     font-size: larger;
-    backdrop-filter: blur(32px) ;
+    background-image: url(/img/menu_footer.svg);
+    /* backdrop-filter: blur(32px) ; */
 }
 
 @media (prefers-color-scheme: dark) {
