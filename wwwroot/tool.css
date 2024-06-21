@@ -22,24 +22,18 @@ body {
     width: 100%;
     position: fixed;
     bottom: 0;
-    height: 45px;
+    height: 64px;
     overflow-y: auto;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #333;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: larger;
-    background-image: url(/img/menu_footer.svg);
-    /* backdrop-filter: blur(32px) ; */
+    background-color: #fff;
+    backdrop-filter: blur(16px);
+    background-image: url(/img/footer_dark.svg);
 }
 
-@media (prefers-color-scheme: dark) {
-    
-
-    .ico {
-        filter: invert();
-    }
-}
 
 .menu a {
     display: flex;
@@ -48,7 +42,23 @@ body {
     align-items: center;
     text-decoration: none;
     font-size: 10px;
-    color: #fff;
+    color: gray; 
+}
+
+.menu a:active {
+    color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    .menu {
+        border-top: 1px solid #333;
+        background-color: #12151eee;
+    }
+
+    .ico {
+        filter: invert();
+    }
 }
 
 .menu a:hover {
@@ -65,11 +75,15 @@ body {
 }
 
 .search {
-    background-image: url(/img/search.svg);
+    background-color: currentColor;
+    mask-image: url(/img/search.svg);
 }
 
 .visits {
-    background-image: url(/img/visits.svg);
+    background-color: currentColor;
+    -webkit-mask-image: url(/img/visits.svg);
+    ;
+    mask-image: url(/img/visits.svg);
 }
 
 #searchbiz {
