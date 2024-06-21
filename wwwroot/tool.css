@@ -42,11 +42,15 @@ body {
     align-items: center;
     text-decoration: none;
     font-size: 10px;
-    color: gray; 
+    color: gray;
 }
 
 .menu a:active {
     color: black;
+}
+
+.menu a:hover {
+    text-decoration: underline;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,14 +60,15 @@ body {
         background-color: #12151eee;
     }
 
+    .menu a:active {
+        color: black;
+    }
+
     .ico {
         filter: invert();
     }
 }
 
-.menu a:hover {
-    text-decoration: underline;
-}
 
 .ico {
     display: inline-block;
