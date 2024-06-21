@@ -53,23 +53,6 @@ body {
     text-decoration: underline;
 }
 
-@media (prefers-color-scheme: dark) {
-
-    .menu {
-        border-top: 1px solid #333;
-        background-color: #12151eee;
-    }
-
-    .menu a:active {
-        color: black;
-    }
-
-    .ico {
-        filter: invert();
-    }
-}
-
-
 .ico {
     display: inline-block;
     width: 24px;
@@ -79,6 +62,24 @@ body {
     margin: 0.1em;
 }
 
+@media (prefers-color-scheme: dark) {
+
+    .menu {
+        border-top: 1px solid #333;
+        background-color: #12151eee;
+    }
+
+    .menu a:active {
+        color: white;
+    }
+
+    .ico {
+        color: inherit;
+    }
+}
+
+
+
 .search {
     background-color: currentColor;
     mask-image: url(/img/search.svg);
@@ -86,8 +87,6 @@ body {
 
 .visits {
     background-color: currentColor;
-    -webkit-mask-image: url(/img/visits.svg);
-    ;
     mask-image: url(/img/visits.svg);
 }
 
