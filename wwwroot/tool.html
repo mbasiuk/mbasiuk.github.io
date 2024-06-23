@@ -29,19 +29,26 @@
             <div id="visitbypages"></div>
         </div>
 
-        <div id="searchbiz">
+        <div class="add">
             <h2>Search biz:</h2>
-            <a href="https://dsbs.sba.gov">dsdb.sba.gov</a>
+            <div>
+                <a href="#">add</a>
+                <a href="#">edit</a>
+                <a href="#">comment</a>
+                <a href="#"></a>
+            </div>
+            <div id="searchbiz">
+            </div>
+            <form class="on-add" method="post" action="tool/search">
+                <h2>
+                    Add new Search Description:
+                </h2>
+                <label for="criterias">Criterias:</label>
+                <textarea id="description" name="description"></textarea>
+                <input type="submit">
+            </form>
         </div>
 
-        <form method="post" action="tool/search">
-            <h2>
-                Add new Search Description:
-            </h2>
-            <label for="criterias">Criterias:</label>
-            <textarea id="description" name="description"></textarea>
-            <input type="submit">
-        </form>
 
         <form method="post" action="tool/company">
             <h2>Company</h2>

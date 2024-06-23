@@ -34,7 +34,6 @@ body {
     background-image: url(/img/footer_dark.svg);
 }
 
-
 .menu a {
     display: flex;
     padding: 0.2em 1em;
@@ -51,6 +50,10 @@ body {
 
 .menu a:hover {
     text-decoration: underline;
+}
+
+.on-add {
+    display: none;
 }
 
 .ico {
@@ -77,8 +80,6 @@ body {
         color: inherit;
     }
 }
-
-
 
 .search {
     background-color: currentColor;

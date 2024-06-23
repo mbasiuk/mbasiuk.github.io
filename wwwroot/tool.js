@@ -3,20 +3,13 @@ function renderRecentSearch(data) {
     if (!(this.readyState == 4 && this.status == 200 && (json = JSON.parse(this.responseText)) && json.length)) return;
     var frag = document.createDocumentFragment();
     for (var i = 0; i < json.length; i++) {
+        var div = document.createElement("div");
+        div.classList.add("visit");
+        frag.appendChild(div);
         var search = json[i];
-        var el = document.createElement("a");
         var sp = document.createElement("span");
-        var cr = document.createElement("span");
-        cr.className = "date";
-        if (search.created) {
-            cr.textContent = new Date(search.created).toLocaleString();
-        }
-        sp.textContent = search.description;
-        el.href = "/tool/search/" + search.id;
-        el.textContent = search.id;
-        frag.appendChild(el);
-        frag.appendChild(sp);
-        frag.appendChild(cr);
+        sp.textContent = search.name;
+        div.appendChild(sp);
     }
     var sb = document.getElementById("searchbiz");
     sb.innerText = "";
