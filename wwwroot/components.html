@@ -34,7 +34,7 @@
         blanditiis eaque, alias nam quas, sed est ratione laborum expedita. Reiciendis libero optio aperiam accusamus ad
         placeat.</blockquote>
 
-    <form>
+    <form onsubmit="return false;">
 
         <div>Form</div>
 
@@ -52,35 +52,35 @@
 
         <label>
             input[type=text]:hover
-            <input class="hover" name="n3" type="text" placeholder="text input">
+            <input class="hover" name="n3" type="text" placeholder="text input hover">
         </label>
 
         <br>
 
         <label>
             input[type=text]:focus
-            <input class="focus" name="n4" type="text" placeholder="text input">
+            <input class="focus" name="n4" type="text" placeholder="text input focus">
         </label>
 
         <br>
 
         <label>
             input[type=number]
-            <input type="number" name="n5" value="0">
+            <input type="number" name="n5" min="1" max="5" placeholder="1 - 5">
         </label>
 
         <br>
 
         <label>
             input[type=number]:hover
-            <input class="hover" name="n6" type="number" value="0">
+            <input class="hover" name="n6" type="number" min="1" max="5" placeholder="1 - 5">
         </label>
 
         <br>
 
         <label>
             input[type=number]:focus
-            <input type="number" class="focus" name="n7" value="0">
+            <input type="number" class="focus" name="n7" value="3" min="1" max="5" placeholder="1 - 5">
         </label>
 
         <br>
@@ -101,7 +101,7 @@
 
         <label>
             input[type=password]:focus
-            <input type="password" id="n10" name="n10" class="focus" placeholder="enter a password">
+            <input type="password" id="n10" name="n10" class="focus" value="1234567890" placeholder="enter a password">
         </label>
 
         <br>
@@ -122,49 +122,49 @@
 
         <label>
             input [type=email]:focus
-            <input type="email" id="n13" name="n13" class="focus" placeholder="example@example.com">
+            <input type="email" id="n13" name="n13" class="focus" value="example@example.com" placeholder="example@example.com">
         </label>
 
         <br>
 
         <label>
             input [type=search]
-            <input type="search" id="n21" name="n21" value="search" placeholder="search example">
+            <input type="search" id="n21" name="n21" placeholder="type search">
         </label>
 
         <br>
 
         <label>
             input [type=search]:hover
-            <input type="search" id="n33" name="n33" value="search" class="hover" placeholder="search example">
+            <input type="search" id="n33" name="n33" class="hover" placeholder="type search hover">
         </label>
 
         <br>
 
         <label>
             input [type=search]:focus
-            <input type="search" id="n34" name="n34" value="search" class="focus" placeholder="search example">
+            <input type="search" id="n34" name="n34" value="search focus" class="focus" placeholder="search example">
         </label>
 
         <br>
 
         <label>
             input [type=tel]
-            <input type="tel" value="12345678" name="n22" id="n22" placeholder="telephone number">
+            <input type="tel" name="n22" id="n22" placeholder="telephone number">
         </label>
 
         <br>
 
         <label>
             input [type=tel]:hover
-            <input type="tel" value="12345678" name="n35" id="n35" class="hover" placeholder="telephone number">
+            <input type="tel" name="n35" id="n35" class="hover" placeholder="telephone number hover">
         </label>
 
         <br>
 
         <label>
             input [type=tel]:focus
-            <input type="tel" value="12345678" name="n36" id="n36" class="focus" placeholder="telephone number">
+            <input type="tel" value="12345678" name="n36" id="n36" class="focus" placeholder="telephone number focus">
         </label>
 
         <br>
@@ -178,32 +178,52 @@
 
         <label>
             input [type=url]
-            <input type="url" id="n37" name="n37" class="hover" placeholder="enter url">
+            <input type="url" id="n37" name="n37" class="hover" placeholder="enter url hover">
         </label>
 
         <br>
 
         <label>
             input [type=url]
-            <input type="url" id="n38" name="n38" class="focus" placeholder="enter url">
+            <input type="url" id="n38" name="n38" class="focus" value="https://example.com" placeholder="enter url focus">
         </label>
 
         <br>
 
+        <label>
+            input[type=text].b1
+            <input type="text" name="n39" class="b1" placeholder="text input">
+        </label>
+
+        <br>
+
+        <label>
+            input[type=text].b1:hover
+            <input type="text" name="n40" class="b1 hover" placeholder="text input hover">
+        </label>
+
+        <br>
+
+        <label>
+            input[type=text].b1:focus
+            <input type="text" name="n41" class="b1 hover focus" value="text input focus" placeholder="text input focus">
+        </label>
+
+        <br>
+
+        <div style="display: flex; flex-direction: column; width: 200px; margin-left: auto;">
 
         <button>button</button>
 
-        <br>
 
         <button class="hover">button:hover</button>
 
-        <br>
 
         <button class="focus">button:focus</button>
 
         <br>
 
-        <input type="button" id="n14" name="n14" value="input [type=button]" placeholder="input button">
+        <input type="button" value="input [type=button]" placeholder="input button">
 
         <br>
 
@@ -212,6 +232,30 @@
         <br>
 
         <input type="reset" value="input [type=reset]">
+
+        <br>
+
+
+
+        <button class="b1">button.b1</button>
+
+        <button class="hover b1">button.b1:hover</button>
+
+        <button class="focus b1">button.b1:focus</button>
+
+        <br>
+
+        <input type="button" class="b1" value="input [type=button].b1" placeholder="input button">
+
+        <br>
+
+        <input type="submit" class="b1" value="input [type=submit].b1">
+
+        <br>
+
+        <input type="reset" class="b1" value="input [type=reset].b1">
+
+        </div>
 
         <br>
 

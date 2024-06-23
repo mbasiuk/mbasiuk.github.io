@@ -1,6 +1,6 @@
 html,
 body {
-    margin: 0;
+    margin: 0 0 0 100px;
 }
 
 body {
@@ -16,9 +16,15 @@ input {
 }
 
 :root {
-    --input-background-color: #f3f4f0;
-    --input-background-color-hover: #bfd67a;
-    --input-background-color-focus: #a2b6e5;
+    --input-background-color: #e3f2fdb8;
+    --input-background-color-hover: #e3f2fdda;
+    --input-background-color-focus: #d8efff;
+    --input-bordered-background-color: #fff;
+    --input-bordered-backgound-color-hover: #e3f2fdda;
+    --input-bordered-backgound-color-focus: #fff;
+    --button-background-color: #3471d4;
+    --button-background-color-hover: #4481f4;
+    --button-background-color-focus: #2461e4;
 }
 
 a {
@@ -34,56 +40,74 @@ a.hover {
     text-decoration: underline;
 }
 
-input[type=text],
-input[type=password],
-input[type=email],
-input[type=number],
-input[type=search],
-input[type=tel],
-input[type=url] {
-    padding: 0;
-    line-height: 32px;
+input,
+button {
     border: none;
     outline: none;
+    font-size: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+    padding: 0;
+    line-height: 32px;
     background-color: var(--input-background-color);
 }
 
-input[type=text]:hover,
-input[type=text].hover,
-input[type=password]:hover,
-input[type=password].hover,
-input[type=email]:hover,
-input[type=email].hover,
-input[type=number]:hover,
-input[type=number].hover,
-input[type=search]:hover,
-input[type=search].hover,
-input[type=tel]:hover,
-input[type=tel].hover,
-input[type=url]:hover,
-input[type=url].hover {
+.btn,
+button,
+input[type=button],
+input[type=reset],
+input[type=submit] {
+    background-color: var(--button-background-color);
+    color: white;
+}
+
+input:hover,
+.hover {
     background-color: var(--input-background-color-hover);
 }
 
-input[type=text]:focus,
-input[type=text].focus,
-input[type=password]:focus,
-input[type=password].focus,
-input[type=email]:focus,
-input[type=email].focus,
-input[type=number]:focus,
-input[type=number].focus,
-input[type=search]:focus,
-input[type=search].focus,
-input[type=tel]:focus,
-input[type=tel].focus,
-input[type=url]:focus,
-input[type=url].focus {
-    background-color: var(--input-background-color-focus) !important;
+.btn:hover,
+.btn.hover,
+button:hover,
+button.hover,
+input[type=button]:hover,
+input[type=button].hover,
+input[type=reset]:hover,
+input[type=reset].hover,
+input[type=submit]:hover,
+input[tbody=submit].hover {
+    background-color: var(--button-background-color-hover);
+}
+
+input:focus,
+.focus,
+.focus:hover {
+    background-color: var(--input-background-color-focus);
+}
+
+.btn:focus,
+.btn.focus,
+button:focus,
+button.focus,
+button:focus:hover,
+button.focus:hover,
+input[type=button]:focus,
+input[type=button].focus,
+input[type=reset]:focus,
+input[type=reset].focus,
+input[type=submit]:focus,
+input[type=submit].focus {
+    background-color: var(--button-background-color-focus);
+}
+
+form {
+    width: 400px;
 }
 
 label {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .item {
@@ -96,46 +120,22 @@ button,
 input[type=button],
 input[type=submit],
 input[type=reset] {
-    border: none;
-    outline: none;
-    padding: 0;
-    font-family: inherit;
-    font-size: inherit;
-    letter-spacing: inherit;
-    line-height: 32px;
-    background-color: var(--input-background-color);
+    padding: 0 5px;
 }
 
-.btn:hover,
-.btn.hover,
-button:hover,
-button.hover,
-.item:hover,
-.item.hover,
-input[type=button]:hover,
-input[type=button].hover,
-input[type=submit]:hover,
-input[type=submit].hover,
-input[type=reset]:hover,
-input[type=reset].hover {
-    background-color: var(--input-background-color-hover);
-    color: #3471d4;
-    text-decoration: underline;
+
+.b1 {
+    outline: 1px solid black;
 }
 
-.btn:focus,
-.btn.focus,
-button:focus,
-button.focus,
-.item:focus,
-.item.focus,
-input[type=button]:focus,
-input[type=button].focus,
-input[type=submit]:focus,
-input[type=submit].focus,
-input[type=reset]:focus,
-input[type=reset].focus {
-    background-color: var(--input-background-color-focus);
+.b1:hover,
+.b1.hover {
+    outline: 1px solid #0a2757;
+}
+
+.b1:focus,
+.b1.focus {
+    outline: 1px solid #3471d4;
 }
 
 input[type=checkbox],
