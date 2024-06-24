@@ -9,6 +9,10 @@
 </head>
 
 <body>
+
+    <div id="colors" style="width: 400px; ">
+    </div>
+
     <h1>Header 1</h1>
     <h2>Header 2</h2>
     <h3>Header 3</h3>
@@ -26,7 +30,8 @@
     <br>
     <a href="#" class="focused">Link Focused</a>
 
-    <blockquote id="n42" style="margin-right: 0; width: 360px;">Blockquote Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error deserunt vitae quia
+    <blockquote id="n42" style="margin-right: 0; width: 360px;">Blockquote Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Omnis error deserunt vitae quia
         blanditiis eaque, alias nam quas, sed est ratione laborum expedita. Reiciendis libero optio aperiam accusamus ad
         placeat.</blockquote>
 
@@ -410,5 +415,52 @@
         </label>
     </div>
 </body>
+
+<script>
+    var variables = {
+        "--input-background-color": "#e3f2fdb8",
+        "--input-background-color-hover": "#e3f2fdda",
+        "--input-background-color-focus": "#d8efff",
+        "--input-bordered-background-color": "#fff",
+        "--input-bordered-backgound-color-hover": "#e3f2fdda",
+        "--input-bordered-backgound-color-focus": "#fff",
+        "--button-background-color": "#3471d4",
+        "--button-background-color-hover": "#4481f4",
+        "--button-background-color-focus": "#2461e4"
+    };
+
+    var colors = document.getElementById("colors");
+
+    (function init() {
+        var frag = document.createDocumentFragment();
+        for (var v in variables) {
+            if (!variables.hasOwnProperty(v)) {
+                continue;
+            }
+            var key = v;
+            var color = variables[v];
+            var div = document.createElement("div");
+            frag.appendChild(div);
+            var label = document.createElement("label");
+            div.appendChild(label);
+            label.setAttribute("for", key);
+            label.textContent = key;
+            var picker = document.createElement("input");
+            label.appendChild(picker);
+            picker.setAttribute("type", "color");
+            picker.setAttribute("id", key);
+            picker.setAttribute("value", color);
+            picker.onchange = changeColor;
+        }
+        colors.appendChild(frag);
+    })();
+
+
+    function changeColor(e) {
+        document.documentElement.style.setProperty(e.target.id, e.target.value);
+    }
+
+
+</script>
 
 </html>
