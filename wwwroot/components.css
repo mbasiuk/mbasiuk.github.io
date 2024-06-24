@@ -9,12 +9,6 @@ body {
     font-size: 13px;
 }
 
-input {
-    font-size: inherit;
-    font-family: inherit;
-    letter-spacing: inherit;
-}
-
 :root {
     --input-background-color: #e3f2fdb8;
     --input-background-color-hover: #e3f2fdda;
@@ -53,6 +47,7 @@ button {
     background-color: var(--input-background-color);
 }
 
+
 .item {
     line-height: 32px;
     background-color: var(--input-background-color);
@@ -68,9 +63,11 @@ input[type=submit] {
 }
 
 input:hover,
+.item:hover,
 .hover {
     background-color: var(--input-background-color-hover);
 }
+
 
 .btn:hover,
 .btn.hover,
@@ -219,6 +216,10 @@ input[type=file]:focus {
     flex-direction: column;
     align-items: center;
     padding: 8px 4px 0 4px;
+}
+
+.list .item {
+    padding: 0 8px;
 }
 
 .ico {
