@@ -6,11 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Components</title>
     <link rel="stylesheet" href="/components.css">
+    <style>
+        #colors {
+            width: 400px;
+        }
+
+        @media (min-width: 800px) {
+            #colors {
+                position: fixed;
+                right: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div id="colors" style="width: 400px; ">
+    <div id="colors">
     </div>
 
     <h1>Header 1</h1>
@@ -414,6 +426,20 @@
             <span>Active Lorem, ipsum dolor.</span>
         </label>
     </div>
+
+    <p>List with links:</p>
+    <div class="list" style="width: 400px;">
+        <label class="item">
+            Lorem, ipsum dolor.
+            <span class="ico ico-search"></span>
+        </label>
+        <label class="item">
+            Lorem ipsum dolor sit amet.
+            <span class="ico ico-search"></span>
+        </label>
+    </div>
+
+
 </body>
 
 <script>
@@ -426,7 +452,8 @@
         "--input-bordered-backgound-color-focus": "#fff",
         "--button-background-color": "#3471d4",
         "--button-background-color-hover": "#4481f4",
-        "--button-background-color-focus": "#2461e4"
+        "--button-background-color-focus": "#2461e4",
+        "--icon-color": "#cecece"
     };
 
     var colors = document.getElementById("colors");
