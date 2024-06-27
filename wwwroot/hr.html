@@ -20,7 +20,11 @@
         body {
             color: #565656;
         }
-        
+
+        blockquote {
+            font-size: larger;
+        }
+
         .actions a {
             display: inline-flex;
             line-height: 1em;
@@ -122,19 +126,36 @@
             letter-spacing: 1.6px;
         }
 
+        .background {
+            width: 100%;
+            height: 140vh;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            border-radius: 0;
+            background-image: url(/img/bg.svg);
+            z-index: -1000;
+        }
+        
         @media (prefers-color-scheme: dark) {
             body {
                 background: black;
             }
-
-            .actions a {
-                background: black;
+            
+            .background {
+                background-position: top;
+                background-image: url(/img/bg-dark.svg);
+                background-color: white;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="background"></div>
     <div class="container">
 
         <div class="ins-quote">
@@ -145,7 +166,7 @@
 
         <div class="actions">
             <a href="cv/Mykhailo_Basiuk_CV.pdf">
-                <img src="cv/cv100.png" id="pos" width="100" height="129" alt="cv"/>
+                <img src="cv/cv100.png" id="pos" width="100" height="129" alt="cv" />
                 <span class="flex-vert">
                     <span class="main">CV</span>
                     <span class="updated">updated Apr 2024</span>
@@ -163,8 +184,8 @@
             </a>
 
             <br />
-            
-            <a href="https://leetcode.com/u/mykhailobasiuk/" >
+
+            <a href="https://leetcode.com/u/mykhailobasiuk/">
                 <img src="/cv/leetcode.png" alt="leetcode" id="leetcode" width="100" height="129">
                 <span class="flex-vert">
                     <span class="main">Leetcode</span>
